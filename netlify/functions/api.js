@@ -6,7 +6,7 @@ exports.handler = async (event, context) => {
   if (event.httpMethod === 'GET') {
     try {
       // Process the GET request as needed
-      const filePath = path.join(__dirname, '..', 'db.json');
+      const filePath = path.join(__dirname, 'db.json'); // Adjusted path
       const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 
       // Return the data as the response
