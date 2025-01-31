@@ -1,12 +1,9 @@
 // api.js
-const fs = require('fs').promises;
-const path = require('path');
-
+const fetch = require('node-fetch');
 exports.handler = async () => {
   try {
-    const filePath = path.join(__dirname, 'db.json'); // Ensure db.json is inside functions
-    const data = await fs.readFile(filePath, 'utf-8');
-
+    const response = await fetch('https://reliable-bunny-d4f022.netlify.app/db.json'); // Replace with your site URL
+    const data = await response.json();
     return {
       statusCode: 200,
       body: data,
