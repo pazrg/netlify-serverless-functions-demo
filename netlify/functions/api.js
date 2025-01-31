@@ -1,8 +1,9 @@
 // api.js
-const fetch = require('node-fetch');
+const axios = require("axios");
+
 exports.handler = async () => {
   try {
-    const response = await fetch('https://reliable-bunny-d4f022.netlify.app/db.json'); // Replace with your site URL
+    const response = await axios.get('https://reliable-bunny-d4f022.netlify.app/db.json'); // Replace with your site URL
     const data = await response.json();
     return {
       statusCode: 200,
