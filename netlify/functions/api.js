@@ -1,10 +1,14 @@
-// api.js
-const axios = require("axios");
+const fs = require('fs').promises;
+const path = require('path');
 
 exports.handler = async () => {
   try {
-    const response = await axios.get('https://reliable-bunny-d4f022.netlify.app/db.json'); // Replace with your site URL
-    const data = await response.json();
+    const filePath = path.resolve(__dirname, 'db.json'); // Ensure correct path
+    console.log("Attempting to read:", filePath);
+
+    const data = await fs.readFile(filePath, 'utf-8');
+    console.log("File read successfully");
+
     return {
       statusCode: 200,
       body: data,
@@ -12,9 +16,10 @@ exports.handler = async () => {
     };
   } catch (error) {
     console.error("Error reading db.json:", error);
+
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Failed to process GET request" }),
+      body: JSON.stringify({ error: "Failed to process GET request", details: error.message }),
     };
   }
 };
