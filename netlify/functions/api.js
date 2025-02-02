@@ -11,6 +11,10 @@ exports.handler = async (event, context) => {
       headers: { Accept: "application/json", "Accept-Encoding": "identity" },
     });
 
+    if (response.status !== 200) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     let data = response.data;
 
     // Validate topic
