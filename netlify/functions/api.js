@@ -1,17 +1,14 @@
 require("dotenv").config();
 const axios = require("axios");
+const process = require("process")
 
 exports.handler = async (event, context) => {
   try {
     const { topic, id, name } = event.queryStringParameters;
 
     // Fetch the db.json data
-    const response = await axios.get("https://reliable-bunny-d4f022.netlify.app/db.json", {
-    });
-
-    console.log("Raw response from db.json:", response); // Debug log
-
-    let data = response.data;
+    const response = await axios.get('https://reliable-bunny-d4f022.netlify.app/db.json'); 
+    const data = await response.json(); 
 
     // Debug: Check if data is an object
     if (typeof data !== "object" || Array.isArray(data)) {
