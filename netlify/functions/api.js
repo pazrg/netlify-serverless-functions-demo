@@ -3,16 +3,26 @@ const axios = require("axios");
 
 exports.handler = async (event, context) => {
   try {
-    // Extract query parameters
     const { topic, id, name } = event.queryStringParameters;
 
     // Fetch the db.json data
-    const response = await axios.get('https://reliable-bunny-d4f022.netlify.app/db.json'); 
-    if (!response.ok) throw new Error(HTTP error! status: ${response.status});
-    const data = await response.json();    
-    console.log(data);
-    
-    // Validate topic
+    const response = await axios.get("https://reliable-bunny-d4f022.netlify.app/db.json", {
+      headers: { Accept: "application/json", "Accept-Encoding": "identity" },
+    });
+
+    console.log("Raw response from db.json:", response.data); // Debug log
+
+    let data = response.data;
+
+    // Debug: Check if data is an object
+    if (typeof data !== "object" || Array.isArray(data)) {
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: "Unexpected db.json format", received: data }),
+      };
+    }
+
+    // Validate topic (should be a key inside data)
     if (!topic || !data[topic]) {
       return {
         statusCode: 400,
@@ -20,14 +30,14 @@ exports.handler = async (event, context) => {
       };
     }
 
-    let result = data[topic]; // Start with full topic data
+    let result = data[topic]; // Get the requested topic data
 
-    // Filter by ID if provided
+    // Filter by ID (if provided)
     if (id) {
       result = result.filter(item => item.id === Number(id));
     }
 
-    // Filter by Name if provided (case-insensitive)
+    // Filter by Name (if provided)
     if (name) {
       result = result.filter(item => item.name.toLowerCase().includes(name.toLowerCase()));
     }
@@ -37,9 +47,9 @@ exports.handler = async (event, context) => {
       body: JSON.stringify(result),
       headers: { "Content-Type": "application/json" },
     };
-
   } catch (error) {
     console.error("Error fetching or filtering db.json:", error);
+
     return {
       statusCode: 500,
       body: JSON.stringify({ error: "Failed to process GET request", details: error.message }),
