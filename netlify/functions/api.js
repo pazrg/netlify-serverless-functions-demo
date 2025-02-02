@@ -2,34 +2,23 @@ require("dotenv").config();
 const axios = require("axios");
 const process = require("process");
 
-exports.handler = async (event, context) => {
-  // export async function handler(event, context) {
-  try {
-    data = {
-      "users": [
-        { "id": 1, "name": "Alice" },
-        { "id": 2, "name": "Bob" }
-      ]
-    }
-    /*const { keyword } = event.queryStringParameters;
-    let response = await axios.get(
-      `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=${keyword}&image_type=photo&safesearch=true&per_page=3`,
-      {
-        headers: { Accept: "application/json", "Accept-Encoding": "identity" },
-        params: { trophies: true },
-      }
-    );
+exports.handler = async () => {
+  try {     
+    const response = await axios.get('https://reliable-bunny-d4f022.netlify.app/db.json'); 
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
-    let imageURL = response.data.hits;*/
+    const data = await response.json();
 
     return {
       statusCode: 200,
       body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
     };
   } catch (error) {
+    console.error("Error fetching db.json:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error }),
+      body: JSON.stringify({ error: "Failed to process GET request", details: error.message }),
     };
   }
 };
