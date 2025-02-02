@@ -8,7 +8,6 @@ exports.handler = async (event, context) => {
 
     // Fetch the db.json data
     let response = await axios.get("https://reliable-bunny-d4f022.netlify.app/db.json", {
-      headers: { Accept: "application/json", "Accept-Encoding": "identity" },
     });
 
     let data = response.data;
