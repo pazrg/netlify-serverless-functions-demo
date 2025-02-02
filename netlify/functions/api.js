@@ -11,22 +11,23 @@ exports.handler = async (event, context) => {
     const data = await response.json(); 
 
     // Debug: Check if data is an object
-    if (typeof data !== "object" || Array.isArray(data)) {
+    /*if (typeof data !== "object" || Array.isArray(data)) {
       return {
         statusCode: 500,
         body: JSON.stringify({ error: "Unexpected db.json format", received: data }),
       };
-    }
+    }*/
 
     // Validate topic (should be a key inside data)
+    /*
     if (!topic || !data[topic]) {
       return {
         statusCode: 400,
         body: JSON.stringify({ error: `Invalid topic. Available topics: ${Object.keys(data).join(", ")}` }),
       };
-    }
+    }*/
 
-    let result = data[topic]; // Get the requested topic data
+    /*let result = data[topic]; // Get the requested topic data
 
     // Filter by ID (if provided)
     if (id) {
@@ -37,10 +38,10 @@ exports.handler = async (event, context) => {
     if (name) {
       result = result.filter(item => item.name.toLowerCase().includes(name.toLowerCase()));
     }
-
+    */
     return {
       statusCode: 200,
-      body: JSON.stringify(result),
+      body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" },
     };
   } catch (error) {
