@@ -10,6 +10,7 @@ exports.handler = async (event, context) => {
     const response = await axios.get('https://reliable-bunny-d4f022.netlify.app/db.json'); 
     if (!response.ok) throw new Error(HTTP error! status: ${response.status});
     const data = await response.json();    
+    console.log(data)
     
     // Validate topic
     if (!topic || !data[topic]) {
