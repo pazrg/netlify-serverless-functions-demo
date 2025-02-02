@@ -7,7 +7,6 @@ exports.handler = async (event, context) => {
 
     // Fetch the db.json data
     const response = await axios.get("https://reliable-bunny-d4f022.netlify.app/db.json", {
-      headers: { Accept: "application/json", "Accept-Encoding": "identity" },
     });
 
     console.log("Raw response from db.json:", response.data); // Debug log
