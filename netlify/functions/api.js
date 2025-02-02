@@ -7,11 +7,10 @@ exports.handler = async (event, context) => {
     const { topic, id, name } = event.queryStringParameters;
 
     // Fetch the db.json data
-    let response = await axios.get("https://github.com/pazrg/netlify-serverless-functions-demo/blob/main/netlify/functions/db.json", {
-    });
-
-    let data = response.data;
-
+    const response = await axios.get('https://reliable-bunny-d4f022.netlify.app/db.json'); 
+    if (!response.ok) throw new Error(HTTP error! status: ${response.status});
+    const data = await response.json();    
+    
     // Validate topic
     if (!topic || !data[topic]) {
       return {
