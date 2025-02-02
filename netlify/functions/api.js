@@ -1,4 +1,9 @@
-exports.handler = async () => {
+require("dotenv").config();
+const axios = require("axios");
+const process = require("process");
+
+exports.handler = async (event, context) => {
+  // export async function handler(event, context) {
   try {
     data = {
       "users": [
@@ -6,16 +11,25 @@ exports.handler = async () => {
         { "id": 2, "name": "Bob" }
       ]
     }
+    /*const { keyword } = event.queryStringParameters;
+    let response = await axios.get(
+      `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=${keyword}&image_type=photo&safesearch=true&per_page=3`,
+      {
+        headers: { Accept: "application/json", "Accept-Encoding": "identity" },
+        params: { trophies: true },
+      }
+    );
+
+    let imageURL = response.data.hits;*/
+
     return {
       statusCode: 200,
-      body: data,
-      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
     };
   } catch (error) {
-    console.error("Error reading db.json:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Failed to process GET request", details: error.message }),
+      body: JSON.stringify({ error }),
     };
   }
 };
