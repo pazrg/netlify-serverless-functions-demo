@@ -88,12 +88,20 @@
         .results-count {
           font-size: 1rem;
         }
-        .filter-group {
+        /*.filter-group {
           margin-bottom: 10px;
         }
         .filter-chip {
           font-size: 0.9rem;
           padding: 6px 12px;
+        }*/
+        .filter-group {
+          flex-wrap: wrap;
+          width: 100%;
+        }
+        .filter-chip {
+          flex: 1 1 calc(50% - 10px); /* Distribuye los filtros en dos columnas */
+          text-align: center;
         }
       }
 
