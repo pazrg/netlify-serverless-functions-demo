@@ -7,7 +7,7 @@ exports.handler = async (event, context) => {
     const { topic, id, name } = event.queryStringParameters;
 
     // Fetch the db.json data
-    let response = await axios.get("https://reliable-bunny-d4f022.netlify.app/db.json", {
+    let response = await axios.get("https://buscador-lasanimal.netlify.app/db.json", {
       headers: { Accept: "application/json", "Accept-Encoding": "identity" },
     });
 
