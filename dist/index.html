@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Peludos Lasanimal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      main {
+        flex-grow: 1;
+      }
+      .search-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .btn-acogida {
+        background: lightyellow;
+        color: black;
+        border-color: orange;
+      }
+      .btn-adopcion {
+        background: orange;
+        color: white;
+        border-color: orange;
+      }
+      .btn-difusion {
+        background: #f8f9fa;
+        color: black;
+        border-color: black;
+      }
+      .btn:hover {
+        opacity: 0.8;
+      }
+      .filter-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 10px;
+      }
+      .filter-group {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .filter-chip {
+        display: inline-block;
+        padding: 8px 15px;
+        background: lightyellow;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        cursor: pointer;
+      }
+      .filter-chip:hover {
+        background: orange;
+        color: white;
+      }
+      .filter-chip.active {
+        background: orange;
+        color: white;
+      }
+      .results-count {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+      }
+      .results-count i {
+        color: orange;
+        margin-left: 5px;
+      }
+      /* Responsiveness */
+      @media (max-width: 768px) {
+        .search-container {
+          max-width: 100%;
+        }
+        .filter-container {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .results-count {
+          font-size: 1rem;
+        }
+        .filter-group {
+          margin-bottom: 10px;
+        }
+        .filter-chip {
+          font-size: 0.9rem;
+          padding: 6px 12px;
+        }
+      }
+
+      /* Improve card layout for small devices */
+      @media (max-width: 576px) {
+        .more-info-btn {
+          position: static;
+          margin-bottom: 10px;
+        }
+      }
+
+      .more-info-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: orange;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .more-info-btn:hover {
+        background: darkorange;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="bg-dark text-white text-center py-3">
+      <h1>¡Encuentra tu peludo!</h1>
+    </header>
+    <main class="container py-4">
+      <div class="search-container">
+        <input id="search-input" type="text" class="form-control mb-3" placeholder="Buscar por nombre">
+        <div class="filter-container">
+          <div class="filter-group">
+            <h6>Sexo:</h6>
+            <span class="filter-chip" data-filter="sexo" data-value="macho"><i class="fa-solid fa-mars"></i> Macho</span>
+            <span class="filter-chip" data-filter="sexo" data-value="hembra"><i class="fa-solid fa-venus"></i> Hembra</span>
+          </div>
+          <div class="filter-group">
+            <h6>Compatibilidad:</h6>
+            <span class="filter-chip" data-filter="compatibilidad" data-value="gatos"><i class="fa-solid fa-cat"></i> Bien con gatos</span>
+            <span class="filter-chip" data-filter="compatibilidad" data-value="perros"><i class="fa-solid fa-dog"></i> Bien con perros</span>
+          </div>
+          <div class="filter-group">
+            <h6>Vulnerabilidad:</h6>
+            <span class="filter-chip" data-filter="vulnerabilidad" data-value="viejitos"><i class="fa-solid fa-heart"></i> Viejitos</span>
+            <span class="filter-chip" data-filter="vulnerabilidad" data-value="enfermos"><i class="fa-solid fa-notes-medical"></i> Enfermos</span>
+            <span class="filter-chip" data-filter="vulnerabilidad" data-value="discapacitados"><i class="fa-solid fa-wheelchair"></i> Discapacitados</span>
+            <span class="filter-chip" data-filter="vulnerabilidad" data-value="veteranos"><i class="fa-solid fa-star"></i> Veteranos</span>
+          </div>
+          <div class="filter-group">
+            <h6>Tamaño:</h6>
+            <span class="filter-chip" data-filter="tamaño" data-value="pequeño"><i class="fa-solid fa-s"></i> <15 kg</span>
+            <span class="filter-chip" data-filter="tamaño" data-value="mediano"><i class="fa-solid fa-m"></i> 15-30 kg</span>
+            <span class="filter-chip" data-filter="tamaño" data-value="grande"><i class="fa-solid fa-l"></i> >30 kg</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resultado de búsqueda -->
+      <div class="results-count">
+        <p><strong>5</strong> peludos encontrados</p>
+      </div>
+
+      <!-- Fila de tarjetas -->
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mt-4">
+        
+        <div class="col">
+          <div class="card">
+            <button class="more-info-btn" onclick="window.location.href='detalles.html'">Más info</button>
+            <img src="https://diamondpet.storage.googleapis.com/wp-content/uploads/2021/07/09073656/young-puppy-on-leash-sitting-in-grass-012924.jpg" class="card-img-top" alt="Perro en adopción">
+            <div class="card-body">
+              <h5 class="card-title">Condado <i class="fa-solid fa-paw"></i></h5>
+              <p class="card-text">Un adorable cachorro en busca de un hogar lleno de amor. Es muy activo y ama jugar con otros perros. Si estás buscando un compañero para tus caminatas...</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm btn-difusion"><i class="fa-solid fa-link"></i> Difusión</button>
+              <button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acogida</button>
+              <button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopción</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Repeat for other cards as needed -->
+        <div class="col">
+          <div class="card">
+            <button class="more-info-btn" onclick="window.location.href='detalles.html'">Más info</button>
+            <img src="https://diamondpet.storage.googleapis.com/wp-content/uploads/2021/07/09073656/young-puppy-on-leash-sitting-in-grass-012924.jpg" class="card-img-top" alt="Perro en adopción">
+            <div class="card-body">
+              <h5 class="card-title">Condado <i class="fa-solid fa-paw"></i></h5>
+              <p class="card-text">Un adorable cachorro en busca de un hogar lleno de amor. Es muy activo y ama jugar con otros perros. Si estás buscando un compañero para tus caminatas...</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm btn-difusion"><i class="fa-solid fa-link"></i> Difusión</button>
+              <button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acogida</button>
+              <button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopción</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card">
+            <button class="more-info-btn" onclick="window.location.href='detalles.html'">Más info</button>
+            <img src="https://diamondpet.storage.googleapis.com/wp-content/uploads/2021/07/09073656/young-puppy-on-leash-sitting-in-grass-012924.jpg" class="card-img-top" alt="Perro en adopción">
+            <div class="card-body">
+              <h5 class="card-title">Condado <i class="fa-solid fa-paw"></i></h5>
+              <p class="card-text">Un adorable cachorro en busca de un hogar lleno de amor. Es muy activo y ama jugar con otros perros. Si estás buscando un compañero para tus caminatas...</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm btn-difusion"><i class="fa-solid fa-link"></i> Difusión</button>
+              <button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acogida</button>
+              <button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopción</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card">
+            <button class="more-info-btn" onclick="window.location.href='detalles.html'">Más info</button>
+            <img src="https://diamondpet.storage.googleapis.com/wp-content/uploads/2021/07/09073656/young-puppy-on-leash-sitting-in-grass-012924.jpg" class="card-img-top" alt="Perro en adopción">
+            <div class="card-body">
+              <h5 class="card-title">Condado <i class="fa-solid fa-paw"></i></h5>
+              <p class="card-text">Un adorable cachorro en busca de un hogar lleno de amor. Es muy activo y ama jugar con otros perros. Si estás buscando un compañero para tus caminatas...</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm btn-difusion"><i class="fa-solid fa-link"></i> Difusión</button>
+              <button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acogida</button>
+              <button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopción</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card">
+            <button class="more-info-btn" onclick="window.location.href='detalles.html'">Más info</button>
+            <img src="https://diamondpet.storage.googleapis.com/wp-content/uploads/2021/07/09073656/young-puppy-on-leash-sitting-in-grass-012924.jpg" class="card-img-top" alt="Perro en adopción">
+            <div class="card-body">
+              <h5 class="card-title">Condado <i class="fa-solid fa-paw"></i></h5>
+              <p class="card-text">Un adorable cachorro en busca de un hogar lleno de amor. Es muy activo y ama jugar con otros perros. Si estás buscando un compañero para tus caminatas...</p>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-sm btn-difusion"><i class="fa-solid fa-link"></i> Difusión</button>
+              <button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acogida</button>
+              <button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopción</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3">
+      <p>Peludos Lasanimal - Todos los derechos reservados &copy; 2025</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Function to update the URL with active filter parameters & search input
+      function updateURL() {
+        const params = new URLSearchParams();
+
+        // Collect active filter chips
+        document.querySelectorAll('.filter-chip.active').forEach((chip) => {
+          const filter = chip.getAttribute('data-filter');
+          const value = chip.getAttribute('data-value');
+          params.append(filter, value); // Append multiple values for the same key
+        });
+
+        // Collect search input value
+        const searchInput = document.getElementById('search-input');
+        if (searchInput.value.trim() !== '') {
+          params.set('keyword', searchInput.value.trim()); // Add keyword if not empty
+        }
+
+        // Update the URL
+        window.history.replaceState({}, '', '?' + params.toString());
+      }
+
+      // Function to initialize filters & search input based on the URL parameters
+      function initializeFiltersFromURL() {
+        const params = new URLSearchParams(window.location.search);
+
+        // Activate filter chips from URL
+        params.forEach((value, key) => {
+          document.querySelectorAll(`.filter-chip[data-filter="${key}"][data-value="${value}"]`).forEach((chip) => {
+            chip.classList.add('active');
+          });
+        });
+
+        // Fill the search input if 'keyword' exists in URL
+        const searchInput = document.getElementById('search-input');
+        if (params.has('keyword')) {
+          searchInput.value = params.get('keyword');
+        }
+      }
+
+      // Event listener for filter button clicks
+      document.querySelectorAll('.filter-chip').forEach((button) => {
+        button.addEventListener('click', function () {
+          this.classList.toggle('active');
+          updateURL();
+        });
+      });
+
+      // Event listener for search input changes
+      //document.getElementById('search-input').addEventListener('input', updateURL);
+      let typingTimer; // Timer variable
+      const typingDelay = 600; // Time in ms to wait after typing stops
+
+      document.getElementById('search-input').addEventListener('input', function () {
+          clearTimeout(typingTimer); // Reset the timer on every keystroke
+          typingTimer = setTimeout(updateURL, typingDelay); // Call updateURL only after typing stops
+      });
+
+      // Initialize filters and search input on page load
+      initializeFiltersFromURL();
+    </script>
+  </body>
+</html>
