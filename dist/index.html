@@ -103,6 +103,31 @@
           flex: 1 1 calc(50% - 10px); /* Distribuye los filtros en dos columnas */
           text-align: center;
         }
+                .filter-chip {
+          display: inline-block;
+          padding: 8px 15px;
+          background: lightyellow;
+          border: 1px solid #ddd;
+          border-radius: 20px;
+          cursor: pointer;
+        }
+        .filter-chip:hover {
+          display: inline-block;
+          padding: 8px 15px;
+          background: lightyellow;
+          border: 1px solid #ddd;
+          border-radius: 20px;
+          cursor: pointer;
+          color: black;
+        }
+        .filter-chip.active {
+          background: orange;
+          color: white;
+        }
+        .filter-chip.active:hover {
+          background: orange;
+          color: white;
+        }
       }
 
       /* Improve card layout for small devices */
