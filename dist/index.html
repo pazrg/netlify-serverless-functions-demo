@@ -272,7 +272,7 @@
     </script>
     <script type="text/javascript">
       // Function to display cards
-      async function DisplayDogs(dogs) {
+      async function displayDogs(dogs) {
           const container = document.querySelector('.row.row-cols-1');
           container.innerHTML = ''; // Clear previous content                
           dogs.forEach(dog => {
@@ -324,7 +324,7 @@
       getPeludosData().then((data) => {
         if (data) {
               try {
-                fetchAndDisplayDogs(dogs);
+                displayDogs(dogs);
             } catch (error) {
                 console.error('Error fetching dogs:', error);
             }
