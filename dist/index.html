@@ -274,6 +274,9 @@
       initializeFiltersFromURL();
     </script>
     <script type="text/javascript">
+      function capitalizeName(name) {
+          return name.replace(/\b\w/g, (char) => char.toUpperCase());
+      }
       // Function to display cards
       async function displayDogs(dogs) {
           const container = document.querySelector('.row.row-cols-1');
@@ -286,7 +289,7 @@
                       <button class="more-info-btn" onclick="window.location.href='detail'">Más info</button>
                       <img src="https://diamondpet.storage.googleapis.com/wp-content/uploads/2021/07/09073656/young-puppy-on-leash-sitting-in-grass-012924.jpg" class="card-img-top" alt="Perro en adopción">
                       <div class="card-body">
-                          <h5 class="card-title">${dog.nombre} <i class="fa-solid fa-paw"></i></h5>
+                          <h5 class="card-title">${capitalizeName(dog.nombre)} <i class="fa-solid fa-paw"></i></h5>
                           <p class="card-text">${dog.descripcion || 'Sin descripción disponible'}</p>
                       </div>
                       <div class="card-footer">
