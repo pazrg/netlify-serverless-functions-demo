@@ -17,6 +17,7 @@ exports.handler = async (event, context) => {
 
     // Fetch the db.json data
     let result = await axios.get("https://buscador-lasanimal.netlify.app/perro.json", {});
+    console.log(result)
     /*
     if (response.status !== 200) {
       throw new Error(`HTTP error! status: ${response.status}`);
