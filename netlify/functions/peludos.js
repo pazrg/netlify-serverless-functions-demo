@@ -16,8 +16,8 @@ exports.handler = async (event, context) => {
     */
 
     // Fetch the db.json data
-    let result = await axios.get("https://buscador-lasanimal.netlify.app/perro.json", {});
-    let result = result.slice(0,5)
+    let response = await axios.get("https://buscador-lasanimal.netlify.app/perro.json", {});
+    let result = response.slice(0,5)
 
     /*
     // Filter by Name if provided (case-insensitive)
