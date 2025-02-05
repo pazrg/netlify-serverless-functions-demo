@@ -310,7 +310,6 @@
           const API_URL = "https://buscador-lasanimal.netlify.app/.netlify/functions/peludos";
           const response = await fetch(API_URL);
           if (!response.ok) throw new Error("Failed to fetch data");
-          
           const data = await response.json();
           localStorage.setItem("peludosData", JSON.stringify(data)); // Save to LocalStorage
           console.log("✅ Data saved to LocalStorage");
