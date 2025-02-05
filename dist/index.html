@@ -324,7 +324,7 @@
       getPeludosData().then((data) => {
         if (data) {
               try {
-                displayDogs(dogs);
+                displayDogs(data);
             } catch (error) {
                 console.error('Error fetching dogs:', error);
             }
