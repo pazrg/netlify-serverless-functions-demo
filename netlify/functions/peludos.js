@@ -19,7 +19,7 @@ exports.handler = async (event, context) => {
     let response = await axios.get("https://buscador-lasanimal.netlify.app/perro.json", {
       headers: { Accept: "application/json", "Accept-Encoding": "identity" },
     });
-    let data = JSON.parse(JSON.stringify(response.data).trim());
+    let data = response.data;
     let result = data.slice(0,5)
 
     /*
@@ -65,7 +65,7 @@ exports.handler = async (event, context) => {
     
     return {
       statusCode: 200,
-      body: result,
+      body: JSON.stringify(result),
       headers: { "Content-Type": "application/json" },
     };
   } catch (error) {
