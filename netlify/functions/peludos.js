@@ -3,8 +3,9 @@ const axios = require("axios");
 
 exports.handler = async (event, context) => {
   try {
+    /*
     // Extract query parameters
-    const { nombre, tamaño, sexo, edad, ppp, salud, antiguedad } = event.queryStringParameters;
+    //const { nombre, tamaño, sexo, edad, ppp, salud, antiguedad } = event.queryStringParameters;
 
     // Convert repeated parameters into arrays
     const parseQueryParam = param => (Array.isArray(param) ? param.map(p => p.toLowerCase()) : [param.toLowerCase()]);
@@ -12,6 +13,7 @@ exports.handler = async (event, context) => {
     const sizeArray = tamaño ? parseQueryParam(tamaño) : null;
     const sexArray = sexo ? parseQueryParam(sexo) : null;
     const ageRangeArray = edad ? parseQueryParam(edad) : null;
+    */
 
     // Fetch the db.json data
     let response = await axios.get("https://buscador-lasanimal.netlify.app/perro.json", {});
@@ -20,7 +22,8 @@ exports.handler = async (event, context) => {
     }
 
     let result = response.data;
-
+    
+    /*
     // Filter by Name if provided (case-insensitive)
     if (nombre) {
       result = result.filter(item => item.nombre.toLowerCase().includes(nombre.toLowerCase()));
@@ -59,7 +62,8 @@ exports.handler = async (event, context) => {
         result = result.filter(item => item.estado_salud != null);
       }
     }
-
+    */
+    
     return {
       statusCode: 200,
       body: JSON.stringify(result),
