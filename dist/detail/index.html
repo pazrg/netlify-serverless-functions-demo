@@ -110,5 +110,69 @@
     <footer class="bg-dark text-white text-center py-3">
       <p>Peludos Lasanimal - Todos los derechos reservados &copy; 2025</p>
     </footer>
+        <script type="text/javascript">
+      function capitalizeName(name) {
+          return name.replace(/\b\w/g, (char) => char.toUpperCase());
+      }
+      // Function to display cards
+      async function displayDog(dog) {
+          const container = document.querySelector('.row.row-cols-1');
+          container.innerHTML = ''; // Clear previous content                
+          dogs.forEach(dog => {
+              const card = document.createElement('div');
+              card.classList.add('col');
+              card.innerHTML = `
+                  <div class="card">
+                      <button class="more-info-btn" onclick="window.location.href='detail/?${capitalizeName(dog.nombre)}'">Más info</button>
+                      <img src="https://diamondpet.storage.googleapis.com/wp-content/uploads/2021/07/09073656/young-puppy-on-leash-sitting-in-grass-012924.jpg" class="card-img-top" alt="Perro en adopción">
+                      <div class="card-body">
+                          <h5 class="card-title">${capitalizeName(dog.nombre)} <i class="fa-solid fa-paw"></i></h5>
+                          <p class="card-text">${dog.descripcion || 'Sin descripción disponible'}</p>
+                      </div>
+                      <div class="card-footer">
+                          <button class="btn btn-sm btn-difusion"><i class="fa-solid fa-link"></i> Comparte</button>
+                          ${dog.situacion_residencia ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
+                          ${dog.situacion_acogida ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
+                          ${dog.situacion_calle ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
+                      </div>
+                  </div>
+              `;
+              container.appendChild(card);
+          });
+          document.querySelector('.results-count p strong').textContent = dogs.length;
+       }
+      // Function to get data (from LocalStorage or API)
+      async function getPeludosData() {
+        const cachedData = localStorage.getItem("peludosData");
+        if (cachedData) {
+          console.log("📌 Data retrieved from LocalStorage");
+          return JSON.parse(cachedData); // Return stored data
+        }
+        console.log("🌍 Fetching new data from API...");
+        try {
+          const API_URL = "https://buscador-lasanimal.netlify.app/.netlify/functions/peludos";
+          const response = await fetch(API_URL);
+          if (!response.ok) throw new Error("Failed to fetch data");
+          const data = await response.json();
+          localStorage.setItem("peludosData", JSON.stringify(data)); // Save to LocalStorage
+          console.log("✅ Data saved to LocalStorage");
+          return data;
+        } catch (error) {
+          console.error("❌ Error fetching data:", error);
+          return null;
+        }
+      }
+      
+      // Usage Example:
+      getPeludosData().then((data) => {
+        if (data) {
+              try {
+                //displayDog(data);
+            } catch (error) {
+                console.error('Error fetching dogs:', error);
+            }
+        }
+      });
+    </script>
   </body>
 </html>
