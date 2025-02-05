@@ -16,14 +16,12 @@ exports.handler = async (event, context) => {
     */
 
     // Fetch the db.json data
-    let response = await axios.get("https://buscador-lasanimal.netlify.app/perro.json", {});
+    let result = await axios.get("https://buscador-lasanimal.netlify.app/perro.json", {});
+    /*
     if (response.status !== 200) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
     let result = response.data;
-    
-    /*
     // Filter by Name if provided (case-insensitive)
     if (nombre) {
       result = result.filter(item => item.nombre.toLowerCase().includes(nombre.toLowerCase()));
