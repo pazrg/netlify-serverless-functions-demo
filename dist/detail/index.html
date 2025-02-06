@@ -153,9 +153,8 @@
       
           // Normalize input for case-insensitive matching
           const normalizedDogName = dogName.toLowerCase();
-      
           // Find the dog with a matching name (case insensitive)
-          const matchingDog = dogsArray.find(dog => dog.name.toLowerCase() === normalizedDogName);
+          const matchingDog = dogsArray.find(dog => dog.nombre.toLowerCase() === normalizedDogName);
       
           return matchingDog || null; // Return the matching dog or null if not found
       }
