@@ -79,12 +79,7 @@
     <main class="container py-4">
       <div class="text-center position-relative">
         <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783" class="dog-image" alt="Condado, el perrito en adopción">
-        <div class="button-container">
-          <button class="btn btn-sm btn-difusion"><i class="fa-solid fa-link"></i> Comparte</button>
-          ${dog.situacion_residencia ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
-          ${dog.situacion_acogida ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
-          ${dog.situacion_calle ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
-        </div>
+        <div class="button-container"></div>
       </div>
       <div class="mt-4">
         <h2>Sobre Condado</h2>
@@ -165,7 +160,16 @@
         // document.querySelector(".dog-image").alt = `${capitalizeName(dog.nombre)}, el perrito en adopción`;
         document.querySelector("h2").textContent = `Sobre ${capitalizeName(dog.nombre)}`;
         document.querySelector("main p").textContent = dog.descripcion;
-
+        
+        // Atualizar botones
+        const btnContainer = document.querySelector(".button-container");
+        btnContainer.innerHTML = `
+          <button class="btn btn-sm btn-difusion"><i class="fa-solid fa-link"></i> Comparte</button>
+          ${dog.situacion_residencia ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
+          ${dog.situacion_acogida ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
+          ${dog.situacion_calle ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
+        `;
+                  
         // Actualizar atributos
         const attributesContainer = document.querySelector(".attributes");
         attributesContainer.innerHTML = `
