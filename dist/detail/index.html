@@ -47,6 +47,11 @@
       .social-icons a:hover {
         color: orange;
       }
+      .btn-apadrina{
+        background: black;
+        color: white;
+        border-color: black;
+      }
       .btn-acogida {
         background: lightyellow;
         color: black;
@@ -75,9 +80,10 @@
       <div class="text-center position-relative">
         <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783" class="dog-image" alt="Condado, el perrito en adopción">
         <div class="button-container">
-          <button class="btn btn-sm btn-difusion"><i class="fa-solid fa-link"></i> Difusión</button>
-          <button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acogida</button>
-          <button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopción</button>
+          <button class="btn btn-sm btn-difusion"><i class="fa-solid fa-link"></i> Comparte</button>
+          ${dog.situacion_residencia ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
+          ${dog.situacion_acogida ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
+          ${dog.situacion_calle ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
         </div>
       </div>
       <div class="mt-4">
