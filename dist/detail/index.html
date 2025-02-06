@@ -163,7 +163,7 @@
         // Actualizar atributos
         const attributesContainer = document.querySelector(".attributes");
         attributesContainer.innerHTML = `
-            <span><i class="fa-solid fa-mars${dog.sexo === 'Hembra' ? '-venus' : ''}"></i> ${dog.sexo}</span>
+            <span><i class="fa-solid fa${dog.sexo === 'Hembra' ? '-venus' : '-mars'}"></i> ${dog.sexo}</span>
             <span><i class="fa-solid fa-birthday-cake"></i> ${dog.edad_tramo}</span>
             <span><i class="fa-solid fa-dog"></i> ${dog.tamaño}</span>
             <!--<span><i class="fa-solid fa-heart"></i> ${dog.temperamento}</span>-->
