@@ -141,6 +141,24 @@
           });
           document.querySelector('.results-count p strong').textContent = dogs.length;
        }
+      function getDogFromURL(dogsArray) {
+          // Get the URL parameters
+          const params = new URLSearchParams(window.location.search);
+          const dogName = params.get("name");
+      
+          if (!dogName) {
+              console.warn("No 'name' parameter found in URL.");
+              return null;
+          }
+      
+          // Normalize input for case-insensitive matching
+          const normalizedDogName = dogName.toLowerCase();
+      
+          // Find the dog with a matching name (case insensitive)
+          const matchingDog = dogsArray.find(dog => dog.name.toLowerCase() === normalizedDogName);
+      
+          return matchingDog || null; // Return the matching dog or null if not found
+      }
       // Function to get data (from LocalStorage or API)
       async function getPeludosData() {
         const cachedData = localStorage.getItem("peludosData");
@@ -167,7 +185,11 @@
       getPeludosData().then((data) => {
         if (data) {
               try {
-                //displayDog(data);
+                dog = getDogFromURL(data)
+                if(dog){
+                  //displayDog(dog)
+                  console.log(dog)
+                }
             } catch (error) {
                 console.error('Error fetching dogs:', error);
             }
