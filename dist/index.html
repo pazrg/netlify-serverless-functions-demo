@@ -286,7 +286,7 @@
               card.classList.add('col');
               card.innerHTML = `
                   <div class="card">
-                      <button class="more-info-btn" onclick="window.location.href='detail/?${capitalizeName(dog.nombre)}'">Más info</button>
+                      <button class="more-info-btn" onclick="window.location.href='detail/name=?${capitalizeName(dog.nombre)}'">Más info</button>
                       <img src="https://diamondpet.storage.googleapis.com/wp-content/uploads/2021/07/09073656/young-puppy-on-leash-sitting-in-grass-012924.jpg" class="card-img-top" alt="Perro en adopción">
                       <div class="card-body">
                           <h5 class="card-title">${capitalizeName(dog.nombre)} <i class="fa-solid fa-paw"></i></h5>
