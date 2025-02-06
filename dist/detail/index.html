@@ -154,10 +154,6 @@
       }
           
       function fillDogDetails(dog){
-        if (!dog) {
-            document.body.innerHTML = "<h2 class='text-center mt-5'>Perrito no encontrado</h2>";
-            return;
-        }
         document.querySelector("header h1").textContent = `Conoce a ${capitalizeName(dog.nombre)}`;
         //document.querySelector(".dog-image").src = dog.image;
         // document.querySelector(".dog-image").alt = `${capitalizeName(dog.nombre)}, el perrito en adopción`;
@@ -195,7 +191,7 @@
                 if(dog){
                   fillDogDetails(dog)
                 }else{
-                  document.body.innerHTML = "<h2 class='text-center mt-5'>Perrito no encontrado</h2>";
+                    window.location.href = "https://buscador-lasanimal.netlify.app"; // Redirección si no hay nombre en la URL
                 }
             } catch (error) {
                 console.error('Error fetching dogs:', error);
