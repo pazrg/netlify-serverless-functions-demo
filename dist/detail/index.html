@@ -114,33 +114,6 @@
       function capitalizeName(name) {
           return name.replace(/\b\w/g, (char) => char.toUpperCase());
       }
-      // Function to display cards
-      async function displayDog(dog) {
-          const container = document.querySelector('.row.row-cols-1');
-          container.innerHTML = ''; // Clear previous content                
-          dogs.forEach(dog => {
-              const card = document.createElement('div');
-              card.classList.add('col');
-              card.innerHTML = `
-                  <div class="card">
-                      <button class="more-info-btn" onclick="window.location.href='detail/?${capitalizeName(dog.nombre)}'">Más info</button>
-                      <img src="https://diamondpet.storage.googleapis.com/wp-content/uploads/2021/07/09073656/young-puppy-on-leash-sitting-in-grass-012924.jpg" class="card-img-top" alt="Perro en adopción">
-                      <div class="card-body">
-                          <h5 class="card-title">${capitalizeName(dog.nombre)} <i class="fa-solid fa-paw"></i></h5>
-                          <p class="card-text">${dog.descripcion || 'Sin descripción disponible'}</p>
-                      </div>
-                      <div class="card-footer">
-                          <button class="btn btn-sm btn-difusion"><i class="fa-solid fa-link"></i> Comparte</button>
-                          ${dog.situacion_residencia ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
-                          ${dog.situacion_acogida ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
-                          ${dog.situacion_calle ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
-                      </div>
-                  </div>
-              `;
-              container.appendChild(card);
-          });
-          document.querySelector('.results-count p strong').textContent = dogs.length;
-       }
       function getDogFromURL(dogsArray) {
           // Get the URL parameters
           const params = new URLSearchParams(window.location.search);
@@ -179,14 +152,49 @@
           return null;
         }
       }
-      
+      function {
+        if (!dog) {
+            document.body.innerHTML = "<h2 class='text-center mt-5'>Perrito no encontrado</h2>";
+            return;
+        }
+
+        document.querySelector("header h1").textContent = `Conoce a ${capitalizeName(dog.nombre)}`;
+        //document.querySelector(".dog-image").src = dog.image;
+        // document.querySelector(".dog-image").alt = `${capitalizeName(dog.nombre)}, el perrito en adopción`;
+        document.querySelector("h2").textContent = `Sobre ${capitalizeName(dog.nombre)}`;
+        document.querySelector("main p").textContent = dog.descripcion;
+
+        // Actualizar atributos
+        const attributesContainer = document.querySelector(".attributes");
+        attributesContainer.innerHTML = `
+            <span><i class="fa-solid fa-mars${dog.sexo === 'Hembra' ? '-venus' : ''}"></i> ${dog.sexo}</span>
+            <span><i class="fa-solid fa-birthday-cake"></i> ${dog.edad_tramo}</span>
+            <span><i class="fa-solid fa-dog"></i> ${dog.tamaño}</span>
+            <!--<span><i class="fa-solid fa-heart"></i> ${dog.temperamento}</span>-->
+        `;
+        
+        /*
+        // Actualizar comentarios
+        const commentsContainer = document.querySelector(".list-group");
+        commentsContainer.innerHTML = dog.comments
+            .map(comment => `<li class="list-group-item">"${comment.text}" - ${comment.author}</li>`)
+            .join("");
+
+        // Actualizar redes sociales
+        const socialIcons = document.querySelectorAll(".social-icons a");
+        socialIcons[0].href = dog.socialLinks.facebook;
+        socialIcons[1].href = dog.socialLinks.instagram;
+        socialIcons[2].href = dog.socialLinks.twitter;
+        */
+    }
+          
       // Usage Example:
       getPeludosData().then((data) => {
         if (data) {
               try {
                 dog = getDogFromURL(data)
                 if(dog){
-                  //displayDog(dog)
+                  fillDogDetails(dog)
                   console.log(dog)
                 }
             } catch (error) {
