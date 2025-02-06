@@ -166,9 +166,9 @@
             <span><i class="fa-solid fa${dog.sexo === 'Hembra' ? '-venus' : '-mars'}"></i> ${dog.sexo}</span>
             <span><i class="fa-solid fa-birthday-cake"></i> ${dog.edad_tramo}</span>
             <span><i class="fa-solid fa-dog"></i> ${dog.tamaño}</span>
-            ${compatibilidad_gatos === true ? <span><i class="fa-solid fa-cat"></i> Bien con gatos</span> : '' }
-            ${compatibilidad_perros_macho === true ? <span><i class="fa-solid fa-dog"></i><i class="fa-solid fa-mars"></i> Bien con perros</span> : '' }
-            ${compatibilidad_perros_hembra === true ? <span><i class="fa-solid fa-dog"></i><i class="fa-solid fa-venus"></i> Bien con perras</span> : '' }
+            ${dog.compatibilidad_gatos === true ? <span><i class="fa-solid fa-cat"></i> Bien con gatos</span> : '' }
+            ${dog.compatibilidad_perros_macho === true ? <span><i class="fa-solid fa-dog"></i><i class="fa-solid fa-mars"></i> Bien con perros</span> : '' }
+            ${dog.compatibilidad_perros_hembra === true ? <span><i class="fa-solid fa-dog"></i><i class="fa-solid fa-venus"></i> Bien con perras</span> : '' }
 
             <!--<span><i class="fa-solid fa-heart"></i> ${dog.temperamento}</span>-->
         `;
