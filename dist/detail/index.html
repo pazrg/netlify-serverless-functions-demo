@@ -152,12 +152,12 @@
           return null;
         }
       }
-      function {
+          
+      function fillDogDetails(dog){
         if (!dog) {
             document.body.innerHTML = "<h2 class='text-center mt-5'>Perrito no encontrado</h2>";
             return;
         }
-
         document.querySelector("header h1").textContent = `Conoce a ${capitalizeName(dog.nombre)}`;
         //document.querySelector(".dog-image").src = dog.image;
         // document.querySelector(".dog-image").alt = `${capitalizeName(dog.nombre)}, el perrito en adopción`;
@@ -172,7 +172,6 @@
             <span><i class="fa-solid fa-dog"></i> ${dog.tamaño}</span>
             <!--<span><i class="fa-solid fa-heart"></i> ${dog.temperamento}</span>-->
         `;
-        
         /*
         // Actualizar comentarios
         const commentsContainer = document.querySelector(".list-group");
