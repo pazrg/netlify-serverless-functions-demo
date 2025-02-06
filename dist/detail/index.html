@@ -194,6 +194,8 @@
                 dog = getDogFromURL(data)
                 if(dog){
                   fillDogDetails(dog)
+                }else{
+                  document.body.innerHTML = "<h2 class='text-center mt-5'>Perrito no encontrado</h2>";
                 }
             } catch (error) {
                 console.error('Error fetching dogs:', error);
