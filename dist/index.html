@@ -286,17 +286,17 @@
               card.classList.add('col');
               card.innerHTML = `
                   <div class="card">
-                      <button class="more-info-btn" onclick="window.location.href='detail/?name=${capitalizeName(dog.nombre)}'">Más info</button>
+                      <a role="button" class="more-info-btn" href="detail/?name=${capitalizeName(dog.nombre)}">Más info</a>
                       <img src="https://diamondpet.storage.googleapis.com/wp-content/uploads/2021/07/09073656/young-puppy-on-leash-sitting-in-grass-012924.jpg" class="card-img-top" alt="Perro en adopción">
                       <div class="card-body">
                           <h5 class="card-title">${capitalizeName(dog.nombre)} <i class="fa-solid fa-paw"></i></h5>
                           <p class="card-text">${dog.descripcion || 'Sin descripción disponible'}</p>
                       </div>
                       <div class="card-footer">
-                          <button class="btn btn-sm btn-difusion"><i class="fa-solid fa-link"></i> Comparte</button>
-                          ${dog.situacion_residencia ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
-                          ${dog.situacion_acogida ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
-                          ${dog.situacion_calle ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
+                          <!--<a role="button" href="detail/?name=${capitalizeName(dog.nombre)}" class="btn btn-sm btn-difusion"><i class="fa-solid fa-link"></i> Comparte</a>-->
+                          ${dog.situacion_residencia ? '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="/formulario-acoge" class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</a><a role="button" href="/formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>' : ''}
+                          ${dog.situacion_acogida ? '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="/formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>' : ''}
+                          ${dog.situacion_calle ? '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="/formulario-acoge" class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</a><a role="button" href="/formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>' : ''}
                       </div>
                   </div>
               `;
