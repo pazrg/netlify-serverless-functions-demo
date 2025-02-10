@@ -23,7 +23,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": null,
         "estado_salud": null,
-        "descripcion": "rescatado escapo de campo",
+        "descripcion": "Rescatado. Escapó de campo.",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": null
@@ -52,7 +52,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": null,
         "estado_salud": "displasia (antinflamatorio y condroprotectores)",
-        "descripcion": "no es de lasa - protectora constantina (no presupuesto)",
+        "descripcion": "Encontrado sin identificar cerca Constantina",
         "tutor_ideal": ["Persona con experiencia en la raza"],
         "caso_externo": false,
         "otros": null
@@ -81,7 +81,7 @@
         "compatibilidad_niños": true,
         "compatibilidad_gatos": null,
         "estado_salud": null,
-        "descripcion": "rescatado sanatorio",
+        "descripcion": "Rescatado sanatorio",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": null
@@ -110,7 +110,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": null,
         "estado_salud": "leishmania leve (en tratamiento, requerira pastillas diarias)",
-        "descripcion": "encontrada bajo lluvia",
+        "descripcion": "Encontrada bajo lluvia",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": null
@@ -168,7 +168,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": null,
         "estado_salud": "tratándose de filaria",
-        "descripcion": "Estuvo en una residencia en dos hermanas hasta diciembre 2024, después la campana",
+        "descripcion": null,
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": null
@@ -197,7 +197,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": true,
         "estado_salud": null,
-        "descripcion": "encontrado en la carretera con lola",
+        "descripcion": "Encontrado en la carretera",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": "juega pelota/agua"
@@ -226,7 +226,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": false,
         "estado_salud": "leishmania controlada",
-        "descripcion": null,
+        "descripcion": "Encontrada en la carretera",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": "sumisa perros"
@@ -313,7 +313,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": null,
         "estado_salud": null,
-        "descripcion": "dueño maltratador fallecido",
+        "descripcion": "Recogido tras fallecimiento dueño. Sufrió maltrato.",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": "miedo a cachorros - otro post 4 años 8 kilos"
@@ -333,7 +333,7 @@
         "peso_numero": 12,
         "peso_unidad": "kg",
         "tamaño": "mediano",
-        "raza": "podenca?",
+        "raza": "podenca",
         "ppp": false,
         "temperamento": [],
         "compatibilidad_personas": true,
@@ -371,7 +371,7 @@
         "compatibilidad_niños": true,
         "compatibilidad_gatos": true,
         "estado_salud": "bulto pata/mamas",
-        "descripcion": "convivio con vagabundo hasta fallecimiento - resctada tiempo después vagando",
+        "descripcion": "Convivio con vagabundo hasta fallecimiento. Resctada tiempo después vagando",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": "2 años en residencia"
@@ -400,7 +400,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": false,
         "estado_salud": null,
-        "descripcion": "recogida en la calle de cachorra",
+        "descripcion": "Recogida en la calle de cachorra",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": "9 años en otros post"
@@ -429,7 +429,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": true,
         "estado_salud": null,
-        "descripcion": "adoptado de cachorro y devuelto por nacimiento de bebé",
+        "descripcion": "Adoptado de cachorro y devuelto por nacimiento de bebé",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": "sociable con personas historia por posesión recursos - conoce trucos de patita tumbar. Estuvo 9 años en la campana hasta diciembre 2024."
@@ -458,7 +458,7 @@
         "compatibilidad_niños": true,
         "compatibilidad_gatos": null,
         "estado_salud": "le cuesta caminar - patas atadas mucho tiempo- uso de inflamatorios",
-        "descripcion": "abandonado",
+        "descripcion": "Abandonado",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": null
@@ -487,7 +487,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": null,
         "estado_salud": null,
-        "descripcion": "abandonado - adoptado y devuelto por estrés",
+        "descripcion": "Abandonado. Adoptado y devuelto por estrés",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": null
@@ -516,7 +516,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": false,
         "estado_salud": null,
-        "descripcion": "adoptado cachorro - devuelto por modida (sospecha por nacimiento de bebé) - persigue animales de granja",
+        "descripcion": "Adoptado de cachorro y devuelto. Persigue animales de granja",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": null
@@ -574,7 +574,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": true,
         "estado_salud": null,
-        "descripcion": "cachorro a residencia",
+        "descripcion": "Recogido de cachorro. Desde entonces en residencia",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": "no adopción conjunta - mataron gallinas y gato comportamiento territorial en manada"
@@ -603,7 +603,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": true,
         "estado_salud": null,
-        "descripcion": "cachorro a residencia",
+        "descripcion": "Recogido de cachorro. Desde entonces en residencia",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": "no adopción conjunta - mataron gallinas y gato comportamiento territorial en manada - tira de correa"
@@ -632,7 +632,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": null,
         "estado_salud": null,
-        "descripcion": "encontrado en carretera",
+        "descripcion": "Encontrado en carretera",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": "sumiso"
@@ -661,10 +661,10 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": false,
         "estado_salud": null,
-        "descripcion": null,
+        "descripcion": "Recogido desde cachorro. Desde entonces en residencia",
         "tutor_ideal": [],
         "caso_externo": false,
-        "otros": "observación, no reacciono mal a perros o gatos - su historial denota agresión a perros"
+        "otros": "reacciona mal a perros o gatos - su historial denota agresión a perros"
     },
     {
         "nombre": "Marida",
@@ -719,7 +719,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": null,
         "estado_salud": null,
-        "descripcion": "abandonado",
+        "descripcion": "Abandonado",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": "morder a voluntarios"
@@ -748,7 +748,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": null,
         "estado_salud": null,
-        "descripcion": "abandonado residencia por salud del dueño",
+        "descripcion": "Abandonado. Originalmente en residencia por salud del dueño",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": "no es de lasa - entrenar uso de correa, salta a morder. Se hiere la boca mordiendo correa \"no adoptable\""
@@ -777,7 +777,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": null,
         "estado_salud": null,
-        "descripcion": null,
+        "descripcion": "Recogido de la calle con heridas y cicatrices",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": "varios años en residencia - policia de pueblo, reporta perros con heridas, cheus es uno de ellos con cicatrices"
@@ -899,7 +899,7 @@
         "otros": null
     },
     {
-        "nombre": "Lucero/Neko (único gato)",
+        "nombre": "Lucero/Neko",
         "antiguedad_numero": null,
         "antiguedad_unidad": "años",
         "situacion_residencia": true,
@@ -922,7 +922,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": null,
         "estado_salud": null,
-        "descripcion": null,
+        "descripcion": "Abandono. Recogido y desde entonces en residencia. Único gato de Lasa.",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": null
@@ -1038,7 +1038,7 @@
         "compatibilidad_niños": true,
         "compatibilidad_gatos": null,
         "estado_salud": null,
-        "descripcion": null,
+        "descripcion": "Recogido de la calle en muy mal estado",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": null
@@ -1067,7 +1067,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": null,
         "estado_salud": null,
-        "descripcion": null,
+        "descripcion": "Recogido de la calle en muy mal estado",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": null
@@ -1096,7 +1096,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": null,
         "estado_salud": null,
-        "descripcion": null,
+        "descripcion": "Recogido de la calle cerca de Constantina",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": "difundimos, es de la protectora de Constantina"
@@ -1125,7 +1125,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": true,
         "estado_salud": null,
-        "descripcion": null,
+        "descripcion": "Abandono. Originalmente en residencia por estudios dueño",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": null
@@ -1270,7 +1270,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": null,
         "estado_salud": null,
-        "descripcion": null,
+        "descripcion": "Entrega de cazador",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": null
@@ -1328,7 +1328,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": null,
         "estado_salud": null,
-        "descripcion": null,
+        "descripcion": "Recogido vagando",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": null
@@ -1357,7 +1357,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": null,
         "estado_salud": null,
-        "descripcion": null,
+        "descripcion": "Recogido en carretera atropellado",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": "atropellado, cubito y radio roto, necesita cirugía"
@@ -1386,7 +1386,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": null,
         "estado_salud": null,
-        "descripcion": null,
+        "descripcion": "Recogida vagando",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": null
@@ -1415,7 +1415,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": null,
         "estado_salud": null,
-        "descripcion": null,
+        "descripcion": "Recogido en la calle atropellado",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": null
@@ -1444,7 +1444,7 @@
         "compatibilidad_niños": null,
         "compatibilidad_gatos": null,
         "estado_salud": null,
-        "descripcion": null,
+        "descripcion": "Recogido en la carretera junto a su hermano (fallecido)",
         "tutor_ideal": [],
         "caso_externo": false,
         "otros": null
