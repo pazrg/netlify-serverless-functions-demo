@@ -352,7 +352,7 @@
                 <div class="mb-3">
                     <label for="pregunta" class="form-label">¿Que piensa de la esterilización de perros/as?</label>
                     <br><small>¿Esterilizaría usted a su mascota? ¿Por qué?</small>
-                    <textarea id="pregunta-esterilizacion" class="form-control" id="pregunta" rows="3"></textarea>
+                    <textarea id="pregunta-esterilizacion" class="form-control" id="pregunta" rows="3" required></textarea>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">¿Ha tenido mascotas antes?</label>
@@ -444,7 +444,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">¿Tiene jardín o patio?</label>
-                    <select id="pregunta-jardin-patio" class="form-control">
+                    <select id="pregunta-jardin-patio" class="form-control" required>
                         <option>Sí (sin vallar)</option>
                         <option>Sí (vallado)</option>
                         <option>No</option>
@@ -461,7 +461,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">¿Tiene algún vecino que esté especialmente en contra de que habiten perros en las viviendas cercanas?</label>
-                    <select id="pregunta-vecinos" class="form-control">
+                    <select id="pregunta-vecinos" class="form-control" required>
                         <option>Sí</option>
                         <option>No</option>
                     </select>
@@ -478,14 +478,14 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">¿Tiene previsto mudarse en los próximos 10-15 años?</label>
-                    <select id="pregunta-mudanza" class="form-control">
+                    <select id="pregunta-mudanza" class="form-control" required>
                         <option>Sí</option>
                         <option>No</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Ante un cambio de domicilio, ¿llevaría siempre a su animal consigo?</label>
-                    <select id="pregunta-cambio-domicilio" class="form-control">
+                    <select id="pregunta-cambio-domicilio" class="form-control" required>
                         <option>Sí</option>
                         <option>No</option>
                     </select>
@@ -495,30 +495,22 @@
               <div class="tab-pane fade" id="convivientes" role="tabpanel" aria-labelledby="convivientesTab">
                 <div class="mb-3"><h3>Convivientes</h3></div>
                 <div class="mb-3">
-                    <label class="form-label">¿Cuántas personas mayores de edad conviven con usted?</label>
-                    <input id="pregunta-numero-convivientes-mayor-edad"type="text" class="form-control" id="perro" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">¿Cuántas personas menores de edad conviven con usted?</label>
-                    <input id="pregunta-numero-convivientes-menor-edad" type="text" class="form-control" id="perro" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">En relación a los menores de edad, ¿Cómo los describiría?</label>
+                    <label class="form-label">¿Cuántas personas mayores de edad conviven con usted y cómo los describiría?</label>
                     <br><small>(tranquilos, activos, responsables...)</small>
-                    <textarea id="pregunta-descripcion-convivientes-mayor-edad" class="form-control" rows="3" required></textarea>
+                    <textarea id="pregunta-convivientes-mayor-edad" class="form-control" rows="3" required></textarea>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">En relación a los mayores de edad, ¿Cómo los describiría?</label>
+                    <label class="form-label">¿Cuántas personas menores de edad conviven con usted y cómo los describiría?</label>
                     <br><small>(tranquilos, activos, responsables...)</small>
-                    <textarea id="pregunta-descripcion-convivientes-menor-edad" class="form-control" rows="3" required></textarea>
+                    <textarea id="pregunta-convivientes-menor-edad" class="form-control" rows="3" required></textarea>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Si vive solo/a con menores/personas dependientes, ¿qué haría con el perro en caso de urgencia (hospitalización, viajes imprevistos, etc.)?</label>
-                    <textarea id="pregunta-personas-dependientes" class="form-control" rows="3" required></textarea>
+                    <textarea id="pregunta-personas-dependientes" class="form-control" rows="3"></textarea>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">¿Alguno de los convivientes tiene alergias a los perros?</label>
-                    <select id="pregunta-alergias-convivientes" class="form-control">
+                    <select id="pregunta-alergias-convivientes" class="form-control" required>
                         <option>Sí</option>
                         <option>No</option>
                     </select>
@@ -534,7 +526,7 @@
                 <div class="mb-3">
                     <label class="form-label">¿Tiene actualmente otros animales en casa?</label>
                     <br><small>Cuéntenos algo de ellos: cuantos son y de que especie, en caso de que sean perros  díganos  que raza son, de que edad, de que sexo, qué carácter tienen (dominantes, celosos,...) qué relación tiene con ellos (compañía, guarda,...)</small>
-                    <textarea id="pregunta-convivientes-animales" class="form-control" rows="3"></textarea>
+                    <textarea id="pregunta-convivientes-animales" class="form-control" rows="3" required></textarea>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Si tiene otros animales en casa, ¿Tienen sus animales las vacunas actualizadas?</label>
@@ -544,7 +536,7 @@
                 <div class="mb-3">
                     <label class="form-label">¿Qué piensa sobre la convivencia entre bebés y perros?</label>
                     <br><small>¿Existe la posibilidad de la llegada de un bebé en los próximos años? </small>
-                    <textarea id="pregunta-convivientes-bebe-perro" class="form-control" rows="3"></textarea>
+                    <textarea id="pregunta-convivientes-bebe-perro" class="form-control" rows="3" required></textarea>
                 </div>
               </div>
               <!-- Paso 7: Datos personales -->
@@ -564,7 +556,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Estado Civil</label>
-                    <select id="pregunta-estado-civil" class="form-control">
+                    <select id="pregunta-estado-civil" class="form-control" required>
                         <option>Soltero/a</option>
                         <option>Casado/a</option>
                         <option>Pareja de hecho</option>
