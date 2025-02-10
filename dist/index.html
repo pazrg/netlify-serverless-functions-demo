@@ -3,146 +3,187 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Peludos Lasanimal</title>
+    <title>Formulario de Adopción</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
+
     <style>
       body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
       }
+
+      header {
+        background-color: black;
+        color: white;
+        padding: 30px 0;
+        text-align: center;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+
       main {
-        flex-grow: 1;
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       }
-      .search-container {
-        max-width: 800px;
-        margin: 0 auto;
+
+      .nav-pills .nav-link {
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        color: #333;
+        font-weight: 500;
       }
-      .btn-apadrina {
-        background: black;
+
+      .nav-pills .nav-link.active {
+        background-color: orange;
         color: white;
-        border-color: black;
-        margin: 0.25em;
+        border-color: orange;
       }
+
+      .nav-pills .nav-item {
+        margin-bottom: 10px;
+      }
+
+      .tab-content {
+        margin-top: 20px;
+      }
+
+      .form-label {
+        font-weight: 500;
+        color: #555;
+      }
+
+      .form-control {
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        box-shadow: none;
+        font-size: 1rem;
+        padding: 10px;
+      }
+
+      .form-control:focus {
+        border-color: orange;
+        box-shadow: 0 0 3px rgba(255, 106, 19, 0.5);
+      }
+
+      .form-control[readonly] {
+        background-color: #f1f1f1;
+      }
+
+      .mb-3 textarea {
+        resize: vertical;
+      }
+
+      .btn {
+        border-radius: 5px;
+        font-weight: 600;
+        padding: 10px 20px;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
       .btn-acogida {
-        background: lightyellow;
-        color: black;
-        border-color: orange;
-        margin: 0.25em;
+        background-color: #f3d15c;
+        color: #333;
+        border: 1px solid #e2c75f;
       }
+
+      .btn-acogida:hover {
+        background-color: #e2c75f;
+        transform: scale(1.05);
+      }
+
       .btn-adopcion {
-        background: orange;
+        background-color: orange;
         color: white;
-        border-color: orange;
-        margin: 0.25em;
+        border: 1px solid #e05a00;
       }
-      .btn-difusion {
-        background: #f8f9fa;
-        color: black;
-        border-color: black;
+
+      .btn-adopcion:hover {
+        background-color: #e05a00;
+        transform: scale(1.05);
       }
-      .btn:hover {
-        opacity: 0.8;
+
+      .btn-submit {
+        background-color: #000;
+        color: white;
+        border: none;
       }
+
+      .btn-submit:hover {
+        color: white;
+        background-color: #333;
+        transform: scale(1.05);
+      }
+
+      .warning-message {
+        color: #FF6A13;
+        font-weight: 600;
+        margin-top: 20px;
+        display: none;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .filter-group {
+        display: flex;
+        gap: 15px;
+      }
+
+      .filter-chip {
+        display: inline-block;
+        padding: 8px 15px;
+        background-color: #f3d15c;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .filter-chip:hover {
+        background-color: #FF6A13;
+        color: white;
+      }
+
+      .filter-chip.active {
+        background-color: #FF6A13;
+        color: white;
+      }
+
       .filter-container {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
-        border: 1px solid #ddd;
-        padding: 10px;
-        border-radius: 10px;
         margin-top: 10px;
-      }
-      .filter-group {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      .filter-chip {
-        display: inline-block;
-        padding: 8px 15px;
-        background: lightyellow;
         border: 1px solid #ddd;
-        border-radius: 20px;
-        cursor: pointer;
-      }
-      .filter-chip:hover {
-        background: orange;
-        color: white;
-      }
-      .filter-chip.active {
-        background: orange;
-        color: white;
-      }
-      .results-count {
-        text-align: center;
-        margin-bottom: 20px;
-        font-size: 1.2rem;
-      }
-      .results-count i {
-        color: orange;
-        margin-left: 5px;
-      }
-      /* Responsiveness */
-      @media (max-width: 768px) {
-        .search-container {
-          max-width: 100%;
-        }
-        .filter-container {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-        .results-count {
-          font-size: 1rem;
-        }
-        /*.filter-group {
-          margin-bottom: 10px;
-        }
-        .filter-chip {
-          font-size: 0.9rem;
-          padding: 6px 12px;
-        }*/
-        .filter-group {
-          flex-wrap: wrap;
-          width: 100%;
-        }
-        .filter-chip {
-          flex: 1 1 calc(50% - 10px); /* Distribuye los filtros en dos columnas */
-          text-align: center;
-        }
-                .filter-chip {
-          display: inline-block;
-          padding: 8px 15px;
-          background: lightyellow;
-          border: 1px solid #ddd;
-          border-radius: 20px;
-          cursor: pointer;
-        }
-        .filter-chip:hover {
-          display: inline-block;
-          padding: 8px 15px;
-          background: lightyellow;
-          border: 1px solid #ddd;
-          border-radius: 20px;
-          cursor: pointer;
-          color: black;
-        }
-        .filter-chip.active {
-          background: orange;
-          color: white;
-        }
-        .filter-chip.active:hover {
-          background: orange;
-          color: white;
-        }
+        padding: 15px;
+        border-radius: 10px;
+        background-color: #f9f9f9;
       }
 
-      /* Improve card layout for small devices */
-      @media (max-width: 576px) {
-        .more-info-btn {
-          position: static;
-          margin-bottom: 10px;
+      @media (max-width: 768px) {
+        .filter-group {
+          flex-wrap: wrap;
+        }
+
+        .nav-pills {
+          flex-direction: row;
+        }
+
+        .nav-item {
+          margin-bottom: 0;
         }
       }
 
@@ -150,192 +191,509 @@
         position: absolute;
         top: 10px;
         right: 10px;
-        background: orange;
+        background: #FF6A13;
         color: white;
         border: none;
-        padding: 5px 10px;
+        padding: 8px 16px;
         border-radius: 5px;
         cursor: pointer;
+        transition: background-color 0.3s;
       }
+
       .more-info-btn:hover {
-        background: darkorange;
+        background: #e05a00;
+      }
+      .missing-field .nav-link {
+          background-color: #ffcccc !important;
+          border-color: #ff0000 !important;
+          color: #ff0000 !important;
+      }
+
+      input:invalid, textarea:invalid, select:invalid {
+          border-color: #ff0000 !important;
       }
     </style>
   </head>
+
   <body>
-    <header class="bg-dark text-white text-center py-3">
-      <h1>¡Encuentra tu peludo!</h1>
+    <header>
+      <h1>Formulario de Adopción</h1>
     </header>
-    <main class="container py-4">
-      <div class="search-container">
-        <input id="search-input" type="text" class="form-control mb-3" placeholder="Buscar por nombre">
-        <div class="filter-container">
-          <div class="filter-group">
-            <h6>Sexo:</h6>
-            <span class="filter-chip" data-filter="sexo" data-value="macho"><i class="fa-solid fa-mars"></i> Macho</span>
-            <span class="filter-chip" data-filter="sexo" data-value="hembra"><i class="fa-solid fa-venus"></i> Hembra</span>
+
+    <main>
+      <form id="adoptionForm">
+        <div class="row">
+          <div class="col-md-3">
+            <ul class="nav nav-pills flex-column" id="adoptionFormTabs" role="tablist">       
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="motivacionTab" data-bs-toggle="pill" href="#motivacion" role="tab" aria-controls="motivacion" aria-selected="false">Paso 1: Motivación</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="conocimientoTab" data-bs-toggle="pill" href="#conocimiento" role="tab" aria-controls="conocimiento" aria-selected="false">Paso 2: Conocimientos</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="responsabilidadTab" data-bs-toggle="pill" href="#responsabilidad" role="tab" aria-controls="responsabilidad" aria-selected="false">Paso 3: Responsabilidad</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="disponibilidadTab" data-bs-toggle="pill" href="#disponibilidad" role="tab" aria-controls="disponibilidad" aria-selected="false">Paso 4: Tiempo</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="viviendaTab" data-bs-toggle="pill" href="#vivienda" role="tab" aria-controls="vivienda" aria-selected="false">Paso 5: Vivienda</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="convivientesTab" data-bs-toggle="pill" href="#convivientes" role="tab" aria-controls="convivientes" aria-selected="false">Paso 6: Convivientes</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="contactoTab" data-bs-toggle="pill" href="#contacto" role="tab" aria-controls="contacto" aria-selected="false">Paso 7: Datos personales</a>
+              </li>
+            </ul>
           </div>
-          <div class="filter-group">
-            <h6>Compatibilidad:</h6>
-            <span class="filter-chip" data-filter="compatibilidad" data-value="gatos"><i class="fa-solid fa-cat"></i> Gatos</span>
-            <span class="filter-chip" data-filter="compatibilidad" data-value="perros"><i class="fa-solid fa-dog"></i><i class="fa-solid fa-mars"></i> Perros </span>
-            <span class="filter-chip" data-filter="compatibilidad" data-value="perras"><i class="fa-solid fa-dog"></i><i class="fa-solid fa-venus"></i> Perras </span>
-          </div>
-          <div class="filter-group">
-            <h6>Vulnerabilidad:</h6>
-            <span class="filter-chip" data-filter="vulnerabilidad" data-value="viejitos"><i class="fa-solid fa-person-cane"></i> Viejitos</span>
-            <span class="filter-chip" data-filter="vulnerabilidad" data-value="enfermos"><i class="fa-solid fa-house-medical"></i> Enfermos</span>
-            <span class="filter-chip" data-filter="vulnerabilidad" data-value="discapacitados"><i class="fa-solid fa-wheelchair"></i> Discapacitados</span>
-            <span class="filter-chip" data-filter="vulnerabilidad" data-value="veteranos"><i class="fa-solid fa-star"></i> Veteranos</span>
-          </div>
-          <div class="filter-group">
-            <h6>Tamaño:</h6>
-            <span class="filter-chip" data-filter="tamaño" data-value="pequeño"><i class="fa-solid fa-s"></i> <15 kg</span>
-            <span class="filter-chip" data-filter="tamaño" data-value="mediano"><i class="fa-solid fa-m"></i> 15-30 kg</span>
-            <span class="filter-chip" data-filter="tamaño" data-value="grande"><i class="fa-solid fa-l"></i> >30 kg</span>
+
+          <div class="col-md-9">
+            <div class="tab-content" id="adoptionFormTabContent">
+              <!-- Paso 1: Motivación -->
+              <div class="tab-pane fade show active" id="motivacion" role="tabpanel" aria-labelledby="motivacionTab">
+                <div class="mb-3"><h3>Motivación</h3></div>
+                <div class="mb-3">
+                    <label for="perro" class="form-label">¿Qué perro quiere adoptar?</label>
+                    <input type="text" class="form-control" id="perro" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿El perro será para usted o para otra persona?</label>
+                    <textarea id="pregunta-perro-para-usted" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">En caso de ser para otra persona, ¿de quién se trata?</label>
+                    <select id="pregunta-perro-para-quien" class="form-control" required>
+                        <option value="notengo">Un adulto</option>
+                        <option value="sitengo">Un menor</option>
+                        <option value="sitengo">Una persona mayor</option>
+                        <option value="sitengo">Una persona con necesidades especiales</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="perro" class="form-label">¿Por qué ha decidido adoptarlo? </label>
+                    <br><small> (compañía, terapia, seguridad, otros...)</small>
+                    <textarea id="pregunta-porque-adopta" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Qué ha valorado más a la hora de elegir al perro?</label>
+                    <br><small>(físico, carácter, edad, tamaño, nivel de energía...)</small>
+                    <textarea id="pregunta-que-valora-adopta" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Qué aspectos consideraría negativos en el perro?</label>
+                    <br><small>(gasto económico, paseos diarios, pelos y suciedad, ladridos...)</small>
+                    <textarea id="pregunta-que-no-gusta" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="pregunta" class="form-label">¿Tiene alguna pregunta sobre el perro?</label>
+                    <textarea class="form-control" id="pregunta-sobre-perro" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="pregunta" class="form-label">¿Qué carácter espera que tenga el perro?</label>
+                    <br><small>(tranquilo, cariñoso, independiente,...)</small>
+                    <textarea class="form-control" id="pregunta-sobre-caracter" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="pregunta-cuando-le-gustaria-adoptar" class="form-label">¿Cuándo le gustaría adoptar al perro?</label>
+                    <select class="form-control" required>
+                        <option value="lo-antes-posible">Lo antes posible</option>
+                        <option value="cuando-tenga-todo-preparado">Cuando tenga todo preparado</option>
+                        <option value="en-unas-semanas">En unas semanas</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Dispone de Licencia para su tenencia?</label>
+                    <br><small>Los perros catalogados como PPP requieren de Licencia</small>
+                    <select class="form-control" required>
+                        <option value="no-tengo-no-quiero">No tengo licencia, y prefiro no tenerla que sacar</option>
+                        <option value="no-tengo-quiero">No tengo licencia, pero no me importaría tramitarla</option>
+                        <option value="si-tengo">Sí tengo licencia</option>
+                    </select>
+                </div>
+              </div>
+              <!-- Paso 2: conocimiento -->
+              <div class="tab-pane fade" id="conocimiento" role="tabpanel" aria-labelledby="conocimientoTab">
+                <div class="mb-3"><h3>Conocimientos</h3></div>
+                <div class="mb-3">
+                    <label for="perro" class="form-label">¿Cuántos años cree que puede vivir un perro?</label>
+                    <input type="text" class="form-control" id="pregunta-años-vida-perro" required>
+                </div>
+                <div class="mb-3">
+                    <label for="perro" class="form-label">¿Cuáles cree que son las principales necesidades de un perro?</label>
+                    <textarea id="pregunta-necesidades-perro" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Qué tipo de alimentación considera adecuada para un perro?</label>
+                    <br><small>(pienso, comida casera, sobras, otros...)</small>
+                    <textarea id="pregunta-alimentacion-perro" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Cuáles cree que son los gastos mensuales aproximados de alimentación de un perro?</label>
+                    <textarea id="pregunta-gastos-alimentacion-perro" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Cuál cree que es el precio medio de una consulta veterinaria?</label>
+                    <br><small>¿Y de una consulta veterinaria de urgencia?</small>
+                    <textarea id="pregunta-precio-consulta-veterinaria" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿A qué cree usted que se deben los problemas de comportamiento que desarrollan los perros?</label><br><small>¿Cree que estos problemas tienen solución, por el contrario, piensa que es imposible que desaparezca una mala conducta?</small>
+                    <textarea id="pregunta-problemas-comportamiento-perro" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="pregunta" class="form-label">En relación a los PPP, ¿sabe que hay paises (Alemania, Suecia etc) donde está prohibida su tenencia y por tanto, viajar y residir con ellos?</label>
+                    <select id="pregunta-paises-ppp" class="form-control" required>
+                        <option>Sí</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="pregunta" class="form-label">¿Que piensa de la esterilización de perros/as?</label>
+                    <br><small>¿Esterilizaría usted a su mascota? ¿Por qué?</small>
+                    <textarea id="pregunta-esterilizacion" class="form-control" id="pregunta" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Ha tenido mascotas antes?</label>
+                    <br><small>Cuéntenos un poco sobre ellos: de qué raza era, tamaño, sexo, que ocurrió con ellos, de que murieron, con qué edad murieron, que relación tuvo con ellos (compañía, de guarda....) si los compró o los adoptó, donde los adoptó...:</small>
+                    <textarea id="pregunta-mascotas-anterioridad" class="form-control" rows="3" required></textarea>
+                </div>
+              </div>
+              <!-- Paso 3: responsabilidad -->
+              <div class="tab-pane fade" id="responsabilidad" role="tabpanel" aria-labelledby="responsabilidadTab">
+                <div class="mb-3"><h3>Responsabilidad</h3></div>
+                <div class="mb-3">
+                    <label class="form-label">¿Entiende que una adopión es un compromiso de por vida?</label>
+                    <select id="pregunta-compromiso-de-por-vida" class="form-control" required>
+                        <option>Sí</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Está dispuesto a asumir los gastos veterinarios y de alimentación del perro?</label>
+                    <select id="pregunta-compromiso-pago-gastos-vet-alimentacion" class="form-control" required>
+                        <option>Sí</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Si debe ausentarse (ocio, vacaciones, etc-, trabajo etc) ¿a quién confiaría el animal?</label>
+                    <br><small>(familiar, amigo, residencia...)</small>
+                    <textarea id="pregunta-ausencia" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Sacaría al perro sin correa? ¿En qué situaciones?</label>
+                    <textarea id="pregunta-sin-correa" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Qué haría ante una inadaptación o problema de comportamiento en el animal que adopte?</label>
+                    <br><small>(lo devolvería, consultaría un educador, lo ntrgaría a otro refugio, se lo pasáría a otra persona)</small>
+                    <textarea id="pregunta-inadaptacion" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Qué haría si el perro daña muebles o pertenencias?</label>
+                    <br><small>(lo devolvería, consultaría un educador, lo ntrgaría a otro refugio, se lo pasáría a otra persona)</small>
+                    <textarea id="pregunta-daños-materiales" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">Hacemos pre-seguimiento y seguimiento post-adoptivo...</div>
+                <div class="mb-3">
+                    <label class="form-label">¿está usted dispuesto a recibir las posibles visitas correspondientes a ambas fases del proceso de adopción?</label>
+                    <select id="pregunta-seguimiento-visita" class="form-control" required>
+                        <option>Sí</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Nos autoriza a contactar con su veterinario para verificar información?</label>
+                    <select id="pregunta-seguimiento-veterinario" class="form-control" required>
+                        <option>Sí</option>
+                        <option>No</option>
+                    </select>
+                </div>
+              </div>
+              <!-- Paso 4: disponibilidad -->
+              <div class="tab-pane fade" id="disponibilidad" role="tabpanel" aria-labelledby="disponibilidadTab">
+                <div class="mb-3"><h3>Disponibilidad</h3></div>
+                <div class="mb-3">
+                    <label class="form-label">¿Trabaja actualmente?</label>
+                    <br><small>En caso afirmativo, indique en qué, si es un trabajo estable y su horario laboral</small>
+                    <textarea id="pregunta-trabajo" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Cuánto tiempo pasará el perro solo en casa?</label>
+                    <textarea id="pregunta-perro-solo" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Cuántas veces al día sacará de paseo al perro y por cuánto tiempo?</label>
+                    <textarea id="pregunta-paseos-perro" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿A qué dedica su tiempo libre? </label>
+                    <br><small>(deporte, lectura, excursiones...)</small>
+                    <textarea id="pregunta-tiempo-libre" class="form-control" rows="3" required></textarea>
+                </div>
+              </div>
+              <!-- Paso 5: Vivienda -->
+              <div class="tab-pane fade" id="vivienda" role="tabpanel" aria-labelledby="viviendaTab">
+                <div class="mb-3"><h3>Vivienda</h3></div>
+                <div class="mb-3">
+                    <label for="tipoVivienda" class="form-label">Tipo de vivienda</label>
+                    <br><small>(piso, casa, chalet, otro...)</small>
+                    <textarea id="pregunta-tipo-vivienda" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Tiene jardín o patio?</label>
+                    <select id="pregunta-jardin-patio" class="form-control">
+                        <option>Sí (sin vallar)</option>
+                        <option>Sí (vallado)</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Superficie de la vivienda en m²</label>
+                    <input id="pregunta-superficie-vivienda" type="text" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Vivienda propia, o de alquiler? </label>
+                    <br><small>En caso de que viva de alquiler, ¿Tiene conocimiento el dueño/a de la vivienda de que va usted a adoptar a un animal?, ¿Está de acuerdo con ello?</small>
+                    <textarea id="pregunta-alquiler-propiedad" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Tiene algún vecino que esté especialmente en contra de que habiten perros en las viviendas cercanas?</label>
+                    <select id="pregunta-vecinos" class="form-control">
+                        <option>Sí</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Qué espacios de la casa tendrá permitidos el perro?</label>
+                    <br><small>¿Habrá alguna habitación donde tenga prohibido entrar el animal? ¿Cual?</small>
+                    <textarea id="pregunta-acceso-habitaciones" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Dónde dormirá el perro?</label>
+                    <br><small>(en su cama dentro de casa, en el sofá, en el pasillo, en una caseta exterior...)</small>
+                    <textarea id="pregunta-dormitorio-perro" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Tiene previsto mudarse en los próximos 10-15 años?</label>
+                    <select id="pregunta-mudanza" class="form-control">
+                        <option>Sí</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Ante un cambio de domicilio, ¿llevaría siempre a su animal consigo?</label>
+                    <select id="pregunta-cambio-domicilio" class="form-control">
+                        <option>Sí</option>
+                        <option>No</option>
+                    </select>
+                  </div>
+              </div>
+              <!-- Paso 6: convivientes -->
+              <div class="tab-pane fade" id="convivientes" role="tabpanel" aria-labelledby="convivientesTab">
+                <div class="mb-3"><h3>Convivientes</h3></div>
+                <div class="mb-3">
+                    <label class="form-label">¿Cuántas personas mayores de edad conviven con usted?</label>
+                    <input id="pregunta-numero-convivientes-mayor-edad"type="text" class="form-control" id="perro" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Cuántas personas menores de edad conviven con usted?</label>
+                    <input id="pregunta-numero-convivientes-menor-edad" type="text" class="form-control" id="perro" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">En relación a los menores de edad, ¿Cómo los describiría?</label>
+                    <br><small>(tranquilos, activos, responsables...)</small>
+                    <textarea id="pregunta-descripcion-convivientes-mayor-edad" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">En relación a los mayores de edad, ¿Cómo los describiría?</label>
+                    <br><small>(tranquilos, activos, responsables...)</small>
+                    <textarea id="pregunta-descripcion-convivientes-menor-edad" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Si vive solo/a con menores/personas dependientes, ¿qué haría con el perro en caso de urgencia (hospitalización, viajes imprevistos, etc.)?</label>
+                    <textarea id="pregunta-personas-dependientes" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Alguno de los convivientes tiene alergias a los perros?</label>
+                    <select id="pregunta-alergias-convivientes" class="form-control">
+                        <option>Sí</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                 <div class="mb-3">
+                    <label class="form-label">Si convive con otras personas, ¿Comparten la decisión de adoptar un perro?</label>
+                    <textarea id="pregunta-convivientes-ok-adopcion" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Si convive con otras personas, ¿Quién pasaría más tiempo con el animal?</label>
+                    <textarea id="pregunta-tiempo-convivientes-perro" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Tiene actualmente otros animales en casa?</label>
+                    <br><small>Cuéntenos algo de ellos: cuantos son y de que especie, en caso de que sean perros  díganos  que raza son, de que edad, de que sexo, qué carácter tienen (dominantes, celosos,...) qué relación tiene con ellos (compañía, guarda,...)</small>
+                    <textarea id="pregunta-convivientes-animales" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Si tiene otros animales en casa, ¿Tienen sus animales las vacunas actualizadas?</label>
+                    <br><small>¿Alguna enfermedad o condición que comunicar? ¿están esterilizados?</small>
+                    <textarea id="pregunta-convivientes-animales-estado" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">¿Qué piensa sobre la convivencia entre bebés y perros?</label>
+                    <br><small>¿Existe la posibilidad de la llegada de un bebé en los próximos años? </small>
+                    <textarea id="pregunta-convivientes-bebe-perro" class="form-control" rows="3"></textarea>
+                </div>
+              </div>
+              <!-- Paso 7: Datos personales -->
+              <div class="tab-pane fade" id="contacto" role="tabpanel" aria-labelledby="contactoTab">
+                <div class="mb-3"><h3>Datos personales</h3></div>
+                <div class="mb-3">
+                  <label for="nombre" class="form-label">Nombre y Apellidos</label>
+                  <input type="text" class="form-control" id="nombre" required>
+                </div>
+                <div class="mb-3">
+                  <label for="edad" class="form-label">DNI/NIF</label>
+                  <input type="text" class="form-control" id="dni" required>
+                </div>
+                <div class="mb-3">
+                  <label for="edad" class="form-label">Edad</label>
+                  <input type="number" class="form-control" id="edad" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Estado Civil</label>
+                    <select id="pregunta-estado-civil" class="form-control">
+                        <option>Soltero/a</option>
+                        <option>Casado/a</option>
+                        <option>Pareja de hecho</option>
+                        <option>Divorciado/a</option>
+                        <option>Viudo/a</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                  <label for="telefono" class="form-label">Teléfono</label>
+                  <input type="tel" class="form-control" id="telefono" required>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="mb-3">
+                  <label for="direccion" class="form-label">Dirección completa</label>
+                  <br><small>(Calle, Código postal, Localidad, Municipio, Provincia)</small>
+                  <input type="text" class="form-control" id="direccion" required>
+                </div>
+                <div class="text-center mt-4">
+                  <button type="submit" class="btn btn-submit">Enviar Solicitud</button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-
-      <!-- Resultado de búsqueda -->
-      <div class="results-count">
-        <p><strong>5</strong> peludos encontrados</p>
-      </div>
-
-      <!-- Fila de tarjetas -->
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mt-4">
-      </div>
+      </form>
     </main>
-
     <footer class="bg-dark text-white text-center py-3">
       <p>Peludos Lasanimal - Todos los derechos reservados &copy; 2025</p>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      // Function to update the URL with active filter parameters & search input
-      function updateURL() {
-        const params = new URLSearchParams();
-
-        // Collect active filter chips
-        document.querySelectorAll('.filter-chip.active').forEach((chip) => {
-          const filter = chip.getAttribute('data-filter');
-          const value = chip.getAttribute('data-value');
-          params.append(filter, value); // Append multiple values for the same key
-        });
-
-        // Collect search input value
-        const searchInput = document.getElementById('search-input');
-        if (searchInput.value.trim() !== '') {
-          params.set('keyword', searchInput.value.trim()); // Add keyword if not empty
-        }
-
-        // Update the URL
-        window.history.replaceState({}, '', '?' + params.toString());
-      }
-
-      // Function to initialize filters & search input based on the URL parameters
-      function initializeFiltersFromURL() {
-        const params = new URLSearchParams(window.location.search);
-
-        // Activate filter chips from URL
-        params.forEach((value, key) => {
-          document.querySelectorAll(`.filter-chip[data-filter="${key}"][data-value="${value}"]`).forEach((chip) => {
-            chip.classList.add('active');
-          });
-        });
-
-        // Fill the search input if 'keyword' exists in URL
-        const searchInput = document.getElementById('search-input');
-        if (params.has('keyword')) {
-          searchInput.value = params.get('keyword');
-        }
-      }
-
-      // Event listener for filter button clicks
-      document.querySelectorAll('.filter-chip').forEach((button) => {
-        button.addEventListener('click', function () {
-          this.classList.toggle('active');
-          updateURL();
-        });
-      });
-
-      // Event listener for search input changes
-      //document.getElementById('search-input').addEventListener('input', updateURL);
-      let typingTimer; // Timer variable
-      const typingDelay = 600; // Time in ms to wait after typing stops
-
-      document.getElementById('search-input').addEventListener('input', function () {
-          clearTimeout(typingTimer); // Reset the timer on every keystroke
-          typingTimer = setTimeout(updateURL, typingDelay); // Call updateURL only after typing stops
-      });
-
-      // Initialize filters and search input on page load
-      initializeFiltersFromURL();
-    </script>
     <script type="text/javascript">
-      function capitalizeName(name) {
-          return name.replace(/\b\w/g, (char) => char.toUpperCase());
-      }
-      // Function to display cards
-      async function displayDogs(dogs) {
-          const container = document.querySelector('.row.row-cols-1');
-          container.innerHTML = ''; // Clear previous content                
-          dogs.forEach(dog => {
-              const card = document.createElement('div');
-              card.classList.add('col');
-              card.innerHTML = `
-                  <div class="card">
-                      <button class="more-info-btn" onclick="window.location.href='detail/?name=${capitalizeName(dog.nombre)}'">Más info</button>
-                      <img src="https://diamondpet.storage.googleapis.com/wp-content/uploads/2021/07/09073656/young-puppy-on-leash-sitting-in-grass-012924.jpg" class="card-img-top" alt="Perro en adopción">
-                      <div class="card-body">
-                          <h5 class="card-title">${capitalizeName(dog.nombre)} <i class="fa-solid fa-paw"></i></h5>
-                          <p class="card-text">${dog.descripcion || 'Sin descripción disponible'}</p>
-                      </div>
-                      <div class="card-footer">
-                          <button class="btn btn-sm btn-difusion"><i class="fa-solid fa-link"></i> Comparte</button>
-                          ${dog.situacion_residencia ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
-                          ${dog.situacion_acogida ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
-                          ${dog.situacion_calle ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
-                      </div>
-                  </div>
-              `;
-              container.appendChild(card);
-          });
-          document.querySelector('.results-count p strong').textContent = dogs.length;
-       }
-      // Function to get data (from LocalStorage or API)
-      async function getPeludosData() {
-        const cachedData = localStorage.getItem("peludosData");
-        if (cachedData) {
-          console.log("📌 Data retrieved from LocalStorage");
-          return JSON.parse(cachedData); // Return stored data
-        }
-        console.log("🌍 Fetching new data from API...");
-        try {
-          const API_URL = "https://buscador-lasanimal.netlify.app/.netlify/functions/peludos";
-          const response = await fetch(API_URL);
-          if (!response.ok) throw new Error("Failed to fetch data");
-          const data = await response.json();
-          localStorage.setItem("peludosData", JSON.stringify(data)); // Save to LocalStorage
-          console.log("✅ Data saved to LocalStorage");
-          return data;
-        } catch (error) {
-          console.error("❌ Error fetching data:", error);
-          return null;
-        }
-      }
-      
-      // Usage Example:
-      getPeludosData().then((data) => {
-        if (data) {
-              try {
-                displayDogs(data);
-            } catch (error) {
-                console.error('Error fetching dogs:', error);
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("adoptionForm");
+    const navItems = document.querySelectorAll(".nav-item");
+    const tabPanes = document.querySelectorAll(".tab-pane");
+
+    // Track the current step index
+    let currentStepIndex = 0;
+
+    // Intercept Bootstrap tab change events
+    document.querySelectorAll('.nav-link').forEach((navLink) => {
+        navLink.addEventListener('show.bs.tab', (e) => {
+            const currentTab = document.querySelector(".tab-pane.active");
+            const nextTabId = e.target.getAttribute("aria-controls");
+            const nextTab = document.getElementById(nextTabId);
+
+            if (currentTab && nextTab) {
+                // Get the index of the current and next tab
+                const currentIndex = Array.from(tabPanes).indexOf(currentTab);
+                const nextIndex = Array.from(tabPanes).indexOf(nextTab);
+
+                // Allow navigation to lower steps without validation
+                if (nextIndex < currentIndex) {
+                    return; // No validation needed
+                }
+
+                // Validate the current tab before allowing navigation to higher steps
+                const isValid = validateTab(currentTab);
+                if (!isValid) {
+                    e.preventDefault(); // Prevent the tab switch
+                    alert("Por favor, complete todos los campos antes de continuar.");
+                } else {
+                    // Update the current step index
+                    currentStepIndex = nextIndex;
+                }
             }
+        });
+    });
+
+    // Handle form submission
+    form.addEventListener("submit", function (event) {
+        let valid = true;
+        const inputs = document.querySelectorAll("input[required], textarea[required], select[required]");
+
+        // Reset styles
+        inputs.forEach((input) => {
+            input.style.borderColor = "";
+        });
+        navItems.forEach((navItem) => {
+            navItem.classList.remove("missing-field");
+        });
+
+        // Check for missing fields
+        inputs.forEach((input) => {
+            if (!input.value.trim()) {
+                valid = false;
+                input.style.borderColor = "red";
+
+                // Find the corresponding tab and highlight it
+                const tabPane = input.closest(".tab-pane");
+                if (tabPane) {
+                    const tabId = tabPane.getAttribute("aria-labelledby");
+                    const navItem = document.querySelector(`#${tabId}`).closest(".nav-item");
+                    if (navItem) {
+                        navItem.classList.add("missing-field");
+                    }
+                }
+            }
+        });
+
+        if (!valid) {
+            event.preventDefault();
+            alert("Por favor, complete todos los campos antes de enviar el formulario.");
         }
-      });
+    });
+
+    // Function to validate a specific tab
+    function validateTab(tab) {
+        let isValid = true;
+        const inputs = tab.querySelectorAll("input[required], textarea[required], select[required]");
+
+        // Reset styles
+        inputs.forEach((input) => {
+            input.style.borderColor = "";
+        });
+
+        // Check for missing fields
+        inputs.forEach((input) => {
+            if (!input.value.trim()) {
+                isValid = false;
+                input.style.borderColor = "red";
+            }
+        });
+
+        return isValid;
+    }
+});
     </script>
   </body>
 </html>
