@@ -165,9 +165,9 @@
         const btnContainer = document.querySelector(".button-container");
         btnContainer.innerHTML = `
           <!--<button class="btn btn-sm btn-difusion"><i class="fa-solid fa-link"></i> Comparte</button>-->
-          ${dog.situacion_residencia ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
-          ${dog.situacion_acogida ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
-          ${dog.situacion_calle ? '<button class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</button><button class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</button><button class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</button>' : ''}
+          ${dog.situacion_residencia ? '<a role="button" href="../formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="../formulario-acoge" class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</a><a role="button" href="../formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>' : ''}
+          ${dog.situacion_acogida ? '<a role="button" href="../formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="../formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>' : ''}
+          ${dog.situacion_calle ? '<a role="button" href="../formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="../formulario-acoge" class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</a><a role="button" href="../formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>' : ''}
         `;
                   
         // Actualizar atributos
