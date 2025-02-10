@@ -290,6 +290,8 @@
                       <img src="https://diamondpet.storage.googleapis.com/wp-content/uploads/2021/07/09073656/young-puppy-on-leash-sitting-in-grass-012924.jpg" class="card-img-top" alt="Perro en adopción">
                       <div class="card-body">
                           <h5 class="card-title">${capitalizeName(dog.nombre)} <i class="fa-solid fa-paw"></i></h5>
+                          <span><i class="fa-solid fa-shield-dog"></i> ${dog.raza || 'mestizo'}</span>
+                          ${dog.ppp === true ? '<span><i class="fa-solid fa-square-check"></i> PPP </span>' : '' }
                           <p class="card-text">${dog.descripcion || 'Sin descripción disponible'}</p>
                       </div>
                       <div class="card-footer">
