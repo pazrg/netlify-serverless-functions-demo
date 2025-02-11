@@ -49,11 +49,11 @@ exports.handler = async (event, context) => {
       }
       const isVet = vulnerabilidadArray.includes("veterano")
       if (isVet){
-        result = result.filter(item.antiguedad_numero && item.antiguedad_numero > 3);
+        result = result.filter(item => item.antiguedad_numero && item.antiguedad_numero > 3);
       }
       const isSick = vulnerabilidadArray.includes("enfermo")
       if (isSick){
-        result = result.filter( item.estado_salud != null );
+        result = result.filter( item => item.estado_salud != null );
       }  
     }
     
