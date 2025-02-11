@@ -3,6 +3,9 @@ const axios = require("axios");
 
 exports.handler = async (event, context) => {
   try {
+    // Extract query parameters
+    const { nombre } = event.queryStringParameters;
+    
     /*
     // Extract query parameters
     //const { nombre, tamaño, sexo, edad, ppp, salud, antiguedad } = event.queryStringParameters;
@@ -20,14 +23,13 @@ exports.handler = async (event, context) => {
       headers: { Accept: "application/json", "Accept-Encoding": "identity" },
     });
     let result = JSON.parse(JSON.stringify(response.data).trim());
-    //let result = data.slice(0,5)
 
-    /*
     // Filter by Name if provided (case-insensitive)
     if (nombre) {
       result = result.filter(item => item.nombre.toLowerCase().includes(nombre.toLowerCase()));
     }
-
+    
+    /*
     // Filter by Size if provided
     if (sizeArray) {
       result = result.filter(item => item.tamaño && sizeArray.includes(item.tamaño.toLowerCase()));
