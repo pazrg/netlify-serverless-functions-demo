@@ -292,6 +292,45 @@
                         <option value="N">No</option>
                     </select>
                 </div>
+              </div>
+              <!-- Paso 7: Datos personales -->
+              <div class="tab-pane fade" id="contacto" role="tabpanel" aria-labelledby="contactoTab">
+                <div class="mb-3"><h3>Datos personales</h3></div>
+                <div class="mb-3">
+                  <label for="nombre" class="form-label">Nombre y Apellidos</label>
+                  <input type="text" class="form-control" name="nombre" required>
+                </div>
+                <div class="mb-3">
+                  <label for="edad" class="form-label">DNI/NIF</label>
+                  <input type="text" class="form-control" name="dni" required>
+                </div>
+                <div class="mb-3">
+                  <label for="edad" class="form-label">Edad</label>
+                  <input type="number" class="form-control" name="edad" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Estado Civil</label>
+                    <select name="pregunta-estado-civil" class="form-control" required>
+                        <option value="soltero">Soltero/a</option>
+                        <option value="casado">Casado/a</option>
+                        <option value="pareja-hecho">Pareja de hecho</option>
+                        <option value="divorciado">Divorciado/a</option>
+                        <option value="viudo">Viudo/a</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                  <label for="telefono" class="form-label">Teléfono</label>
+                  <input type="tel" class="form-control" name="telefono" required>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" name="email" required>
+                </div>
+                <div class="mb-3">
+                  <label for="direccion" class="form-label">Dirección completa</label>
+                  <br><small>(Calle, Código postal, Localidad, Municipio, Provincia)</small>
+                  <input type="text" class="form-control" name="direccion" required>
+                </div>
                 <div class="text-center mt-4">
                   <button type="submit" class="btn btn-submit">Enviar Solicitud</button>
                 </div>
