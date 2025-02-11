@@ -5,6 +5,8 @@ exports.handler = async (event, context) => {
   try {
     // Extract query parameters
     const { nombre , sexo } = event.queryStringParameters;
+
+    const parseQueryParam = param => (Array.isArray(param) ? param.map(p => p.toLowerCase()) : [param.toLowerCase()]);
     const sexArray = sexo ? parseQueryParam(sexo) : null;
     
     /*
