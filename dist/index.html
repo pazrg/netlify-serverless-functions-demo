@@ -211,6 +211,7 @@
             <span class="filter-chip" data-filter="vulnerabilidad" data-value="PPP"><i class="fa-solid fa-square-check"></i> PPP</span>
           </div>
         </div>
+        <button id="copyUrlButton" class="btn btn-outline-secondary"><i class="fa-solid fa-link"></i>Compartir</button>
         <a role="button" class="btn btn-large btn-secondary" href="/">Reset</a>
         <button id="btn-search" class="btn btn-large btn-dark" type="button">Buscar</button>
       </div>
@@ -228,7 +229,7 @@
     <footer class="bg-dark text-white text-center py-3">
       <p>Peludos Lasanimal - Todos los derechos reservados &copy; 2025</p>
     </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
       // Function to update the URL with active filter parameters & search input
@@ -281,6 +282,19 @@
       // Event listener for search input changes
       const searchInput = document.getElementById('search-input');
       searchInput.addEventListener('input', updateURL);
+
+      // Event listener for search input changes
+      document.getElementById('copyUrlButton').addEventListener('click', function() {
+          // Get the current page URL
+          const url = window.location.href;
+          // Copy the URL to the clipboard
+          navigator.clipboard.writeText(url).then(function() {
+              alert('URL copied to clipboard: ' + url);
+          }).catch(function(error) {
+              console.error('Failed to copy URL: ', error);
+          });
+      });
+      
       /*
       let typingTimer; // Timer variable
       const typingDelay = 600; // Time in ms to wait after typing stops
