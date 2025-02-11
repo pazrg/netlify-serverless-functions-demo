@@ -9,6 +9,10 @@ exports.handler = async (event, context) => {
     const sexo = event.multiValueQueryStringParameters?.sexo; // Gets all values as an array
     const parseQueryParam = param => (Array.isArray(param) ? param.map(p => p.toLowerCase()) : [param.toLowerCase()]);
     const sexArray = sexo ? parseQueryParam(sexo) : null;
+
+    const tamaño = event.multiValueQueryStringParameters?.tamaño; // Gets all values as an array
+    const parseQueryParam = param => (Array.isArray(param) ? param.map(p => p.toLowerCase()) : [param.toLowerCase()]);
+    const sizeArray = tamaño ? parseQueryParam(tamaño) : null;
     
     /*
     // Extract query parameters
@@ -34,12 +38,10 @@ exports.handler = async (event, context) => {
     if (sexArray) {
       result = result.filter(item => item.sexo && sexArray.includes(item.sexo.toLowerCase()));
     }
-    
-    /*
-    // Filter by Size if provided
     if (sizeArray) {
       result = result.filter(item => item.tamaño && sizeArray.includes(item.tamaño.toLowerCase()));
     }
+    /*
     // Filter by Age Range if provided
     if (ageRangeArray) {
       result = result.filter(item => item.edad_tramo && ageRangeArray.includes(item.edad_tramo.toLowerCase()));
