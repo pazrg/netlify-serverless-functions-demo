@@ -43,7 +43,7 @@ exports.handler = async (event, context) => {
     }
 
      if (vulnerabilidadArray) {
-      const isPPP = vulnerabilidadArray.includes("PPP")
+      const isPPP = vulnerabilidadArray.includes("ppp")
       if (isPPP){
         result = result.filter(item => item.ppp && item.ppp === true);
       }
