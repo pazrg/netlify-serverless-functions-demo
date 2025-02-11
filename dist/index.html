@@ -168,7 +168,6 @@
     </header>
     <main class="container py-4">
       <div class="search-container">
-        
         <div class="input-group">
           <input id="search-input" type="text" class="form-control" placeholder="Nombre del animal" aria-label="Nombre del animal" aria-describedby="basic-addon2">
           <div class="input-group-append">
@@ -271,7 +270,8 @@
       });
 
       // Event listener for search input changes
-      document.getElementById('search-input').addEventListener('input', updateURL);
+      const searchInput = document.getElementById('search-input');
+      searchInput.addEventListener('input', updateURL);
       /*
       let typingTimer; // Timer variable
       const typingDelay = 600; // Time in ms to wait after typing stops
@@ -280,12 +280,10 @@
         //typingTimer = setTimeout(updateURL, typingDelay); // Call updateURL only after typing stops
       });
       */
-      
       // Event listener for search btns
       document.getElementById('btn-reset').addEventListener('click', function () {
           searchInput.reset()
       });
-
       // Initialize filters and search input on page load
       initializeFiltersFromURL();
     </script>
