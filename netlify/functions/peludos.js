@@ -4,15 +4,14 @@ const axios = require("axios");
 exports.handler = async (event, context) => {
   try {
     // Extract query parameters
-    const { nombre } = event.queryStringParameters;
+    const { nombre , sexo } = event.queryStringParameters;
+    const sexArray = sexo ? parseQueryParam(sexo) : null;
     
     /*
     // Extract query parameters
     //const { nombre, tamaño, sexo, edad, ppp, salud, antiguedad } = event.queryStringParameters;
-
     // Convert repeated parameters into arrays
     const parseQueryParam = param => (Array.isArray(param) ? param.map(p => p.toLowerCase()) : [param.toLowerCase()]);
-
     const sizeArray = tamaño ? parseQueryParam(tamaño) : null;
     const sexArray = sexo ? parseQueryParam(sexo) : null;
     const ageRangeArray = edad ? parseQueryParam(edad) : null;
@@ -28,18 +27,16 @@ exports.handler = async (event, context) => {
     if (nombre) {
       result = result.filter(item => item.nombre.toLowerCase().includes(nombre.toLowerCase()));
     }
+    // Filter by Sex if provided
+    if (sexArray) {
+      result = result.filter(item => item.sexo && sexArray.includes(item.sexo.toLowerCase()));
+    }
     
     /*
     // Filter by Size if provided
     if (sizeArray) {
       result = result.filter(item => item.tamaño && sizeArray.includes(item.tamaño.toLowerCase()));
     }
-
-    // Filter by Sex if provided
-    if (sexArray) {
-      result = result.filter(item => item.sexo && sexArray.includes(item.sexo.toLowerCase()));
-    }
-
     // Filter by Age Range if provided
     if (ageRangeArray) {
       result = result.filter(item => item.edad_tramo && ageRangeArray.includes(item.edad_tramo.toLowerCase()));
