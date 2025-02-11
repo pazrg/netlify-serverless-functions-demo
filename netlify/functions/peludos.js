@@ -15,17 +15,10 @@ exports.handler = async (event, context) => {
 
     const edad = event.multiValueQueryStringParameters?.edad; // Gets all values as an array
     const ageArray = edad ? parseQueryParam(edad) : null;
-    
-    /*
-    // Extract query parameters
-    //const { nombre, tamaño, sexo, edad, ppp, salud, antiguedad } = event.queryStringParameters;
-    // Convert repeated parameters into arrays
-    const parseQueryParam = param => (Array.isArray(param) ? param.map(p => p.toLowerCase()) : [param.toLowerCase()]);
-    const sizeArray = tamaño ? parseQueryParam(tamaño) : null;
-    const sexArray = sexo ? parseQueryParam(sexo) : null;
-    const ageRangeArray = edad ? parseQueryParam(edad) : null;
-    */
 
+    const vulnerabilidad = event.multiValueQueryStringParameters?.vulnerabilidad; // Gets all values as an array
+    const vulnerabilidadArray = vulnerabilidad ? parseQueryParam(vulnerabilidad) : null;
+    
     // Fetch the db.json data
     let response = await axios.get("https://buscador-lasanimal.netlify.app/perro.json", {
       headers: { Accept: "application/json", "Accept-Encoding": "identity" },
@@ -48,26 +41,21 @@ exports.handler = async (event, context) => {
     if (ageArray) {
       result = result.filter(item => item.edad_tramo && ageArray.includes(item.edad_tramo.toLowerCase()));
     }
-    /*
-    // Filter by PPP if provided (expects "true" or "false")
-    if (ppp) {
-      const isPPP = ppp.toLowerCase() === "true";
-      result = result.filter(item => item.ppp === isPPP);
-    }
 
-    if (antiguedad) {
-      const isVeteran = antiguedad.toLowerCase() === 'veterano';
-      if (isVeteran){
-        result = result.filter(item => item.antiguedad_numero && item.antiguedad_numero > 3);
+     if (vulnerabilidadArray) {
+      const isPPP = vulnerabilidadArray.includes("PPP")
+      if (isPPP){
+        result = result.filter(item => item.ppp && item.ppp === true);
       }
-    }
-    if (salud) {
-      const isSick = salud.toLowerCase() === "enfermo";
-      if(isSick){
-        result = result.filter(item => item.estado_salud != null);
+      const isVet = vulnerabilidadArray.includes("veterano")
+      if (isVet){
+        result = result.filter(item.antiguedad_numero && item.antiguedad_numero > 3);
       }
+      const isSick = vulnerabilidadArray.includes("enfermo")
+      if (isSick){
+        result = result.filter( item.estado_salud != null );
+      }  
     }
-    */
     
     return {
       statusCode: 200,
