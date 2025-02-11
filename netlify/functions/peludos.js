@@ -18,6 +18,9 @@ exports.handler = async (event, context) => {
 
     const vulnerabilidad = event.multiValueQueryStringParameters?.vulnerabilidad; // Gets all values as an array
     const vulnerabilidadArray = vulnerabilidad ? parseQueryParam(vulnerabilidad) : null;
+
+    const compatibilidad = event.multiValueQueryStringParameters?.compatibilidad; // Gets all values as an array
+    const compatibilidadArray = compatibilidad ? parseQueryParam(compatibilidad) : null;
     
     // Fetch the db.json data
     let response = await axios.get("https://buscador-lasanimal.netlify.app/perro.json", {
@@ -41,8 +44,22 @@ exports.handler = async (event, context) => {
     if (ageArray) {
       result = result.filter(item => item.edad_tramo && ageArray.includes(item.edad_tramo.toLowerCase()));
     }
+if (compatibilidadArray) {
+      const okCats = compatibilidadArray.includes("gatos")
+      if (okCats){
+        result = result.filter(item => item.compatibilidad_gatos && item.compatibilidad_gatos === true);
+      }
+      const okMales = compatibilidadArray.includes("perros")
+      if (okMales){
+        result = result.filter(item => item.compatibilidad_perros_macho && item.compatibilidad_perros_macho === true);
+      }
+      const okFemales = compatibilidadArray.includes("perras")
+      if (okFemales){
+        result = result.filter(item => item.compatibilidad_perros_hembra && item.compatibilidad_perros_hembra === true);
+      }  
+    }    
 
-     if (vulnerabilidadArray) {
+    if (vulnerabilidadArray) {
       const isPPP = vulnerabilidadArray.includes("ppp")
       if (isPPP){
         result = result.filter(item => item.ppp && item.ppp === true);
