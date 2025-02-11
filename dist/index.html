@@ -271,18 +271,19 @@
       });
 
       // Event listener for search input changes
-      //document.getElementById('search-input').addEventListener('input', updateURL);
-      //let typingTimer; // Timer variable
-      //const typingDelay = 600; // Time in ms to wait after typing stops
-
+      document.getElementById('search-input').addEventListener('input', updateURL);
+      /*
+      let typingTimer; // Timer variable
+      const typingDelay = 600; // Time in ms to wait after typing stops
       document.getElementById('search-input').addEventListener('input', function () {
-        updateURL();
         //clearTimeout(typingTimer); // Reset the timer on every keystroke
         //typingTimer = setTimeout(updateURL, typingDelay); // Call updateURL only after typing stops
       });
-
+      */
+      
+      // Event listener for search btns
       document.getElementById('btn-reset').addEventListener('click', function () {
-          document.getElementById('search-input').reset()
+          searchInput.reset()
       });
 
       // Initialize filters and search input on page load
