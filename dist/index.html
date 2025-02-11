@@ -284,6 +284,7 @@
       document.getElementById('btn-reset').addEventListener('click', function () {
         const searchInput = document.getElementById('search-input');
         searchInput.value = ''; // Clears the input field
+        searchInput.dispatchEvent(new Event('input', { bubbles: true })); // Trigger input event
       });
       // Initialize filters and search input on page load
       initializeFiltersFromURL();
