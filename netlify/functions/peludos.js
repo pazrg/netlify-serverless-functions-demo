@@ -12,6 +12,9 @@ exports.handler = async (event, context) => {
 
     const tamaño = event.multiValueQueryStringParameters?.tamaño; // Gets all values as an array
     const sizeArray = tamaño ? parseQueryParam(tamaño) : null;
+
+    const edad = event.multiValueQueryStringParameters?.edad; // Gets all values as an array
+    const ageArray = edad ? parseQueryParam(edad) : null;
     
     /*
     // Extract query parameters
@@ -37,15 +40,15 @@ exports.handler = async (event, context) => {
     if (sexArray) {
       result = result.filter(item => item.sexo && sexArray.includes(item.sexo.toLowerCase()));
     }
+    // Filter by Size if provided
     if (sizeArray) {
       result = result.filter(item => item.tamaño && sizeArray.includes(item.tamaño.toLowerCase()));
     }
-    /*
-    // Filter by Age Range if provided
-    if (ageRangeArray) {
-      result = result.filter(item => item.edad_tramo && ageRangeArray.includes(item.edad_tramo.toLowerCase()));
+    // Filter by Size if provided
+    if (edadArray) {
+      result = result.filter(item => item.edad_tramo && edadArray.includes(item.edad_tramo.toLowerCase()));
     }
-
+    /*
     // Filter by PPP if provided (expects "true" or "false")
     if (ppp) {
       const isPPP = ppp.toLowerCase() === "true";
