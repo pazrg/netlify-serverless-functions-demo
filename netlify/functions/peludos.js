@@ -45,8 +45,8 @@ exports.handler = async (event, context) => {
       result = result.filter(item => item.tamaño && sizeArray.includes(item.tamaño.toLowerCase()));
     }
     // Filter by Size if provided
-    if (edadArray) {
-      result = result.filter(item => item.edad_tramo && edadArray.includes(item.edad_tramo.toLowerCase()));
+    if (ageArray) {
+      result = result.filter(item => item.edad_tramo && ageArray.includes(item.edad_tramo.toLowerCase()));
     }
     /*
     // Filter by PPP if provided (expects "true" or "false")
