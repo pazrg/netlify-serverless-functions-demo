@@ -18,6 +18,7 @@
       .search-container {
         max-width: 800px;
         margin: 0 auto;
+        display: block
       }
       .btn-apadrina {
         background: black;
@@ -167,6 +168,7 @@
       <h1>¡Encuentra tu peludo!</h1>
     </header>
     <main class="container py-4">
+      <div class="search-container">
         <div class="filter-container">
           <input id="search-input" type="text" class="form-control" placeholder="Nombre del animal" aria-label="Nombre del animal" aria-describedby="basic-addon2">
           <div class="filter-group">
@@ -201,8 +203,9 @@
             <span class="filter-chip" data-filter="vulnerabilidad" data-value="veterano"><i class="fa-solid fa-star"></i> Veterano</span>
             <span class="filter-chip" data-filter="vulnerabilidad" data-value="PPP"><i class="fa-solid fa-square-check"></i> PPP</span>
           </div>
-          <button id="btn-search" class="btn btn-dark" type="button">Buscar</button>
         </div>
+        <button id="btn-search" class="btn btn-dark btn-large" type="button">Buscar</button>
+      </div>
 
       <!-- Resultado de búsqueda -->
       <div class="results-count">
