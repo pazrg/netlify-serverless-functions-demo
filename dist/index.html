@@ -168,7 +168,13 @@
     </header>
     <main class="container py-4">
       <div class="search-container">
-        <input id="search-input" type="text" class="form-control mb-3" placeholder="Buscar por nombre">
+        <div class="input-group mb-3">
+          <input id="search-input type="text" class="form-control mb-3">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button">Buscar por nombre</button>
+          </div>
+        </div>
+        <!--<input id="search-input" type="text" class="form-control mb-3" placeholder="Buscar por nombre">-->
         <div class="filter-container">
           <div class="filter-group">
             <h6>Sexo:</h6>
