@@ -286,6 +286,15 @@
         const searchInput = document.getElementById('search-input');
         searchInput.value = ''; // Clears the input field
         searchInput.dispatchEvent(new Event('input', { bubbles: true })); // Trigger input event
+        getPeludosData().then((data) => {
+        if (data) {
+                try {
+                  displayDogs(data);
+              } catch (error) {
+                  console.error('Error fetching dogs:', error);
+              }
+          }
+        });
       });
       // Initialize filters and search input on page load
       initializeFiltersFromURL();
