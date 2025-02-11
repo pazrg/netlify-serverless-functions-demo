@@ -333,7 +333,7 @@
         }
         */
         console.log("🌍 Fetching new data from API...");
-        const source = "/.netlify/functions/peludos.js";
+        const source = ".functions/netlify/peludos";
         const url = new URL(window.location.href); // Dynamically get the current page URL
         const dataURL=`${url.origin}${source}${url.search}`;
         try {
