@@ -4,8 +4,9 @@ const axios = require("axios");
 exports.handler = async (event, context) => {
   try {
     // Extract query parameters
-    const { nombre , sexo } = event.queryStringParameters;
-
+    const { nombre } = event.queryStringParameters;
+    
+    const sexo = event.multiValueQueryStringParameters?.sexo; // Gets all values as an array
     const parseQueryParam = param => (Array.isArray(param) ? param.map(p => p.toLowerCase()) : [param.toLowerCase()]);
     const sexArray = sexo ? parseQueryParam(sexo) : null;
     
