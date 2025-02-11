@@ -5,13 +5,12 @@ exports.handler = async (event, context) => {
   try {
     // Extract query parameters
     const { nombre } = event.queryStringParameters;
-    
-    const sexo = event.multiValueQueryStringParameters?.sexo; // Gets all values as an array
     const parseQueryParam = param => (Array.isArray(param) ? param.map(p => p.toLowerCase()) : [param.toLowerCase()]);
+
+    const sexo = event.multiValueQueryStringParameters?.sexo; // Gets all values as an array
     const sexArray = sexo ? parseQueryParam(sexo) : null;
 
     const tamaño = event.multiValueQueryStringParameters?.tamaño; // Gets all values as an array
-    const parseQueryParam = param => (Array.isArray(param) ? param.map(p => p.toLowerCase()) : [param.toLowerCase()]);
     const sizeArray = tamaño ? parseQueryParam(tamaño) : null;
     
     /*
