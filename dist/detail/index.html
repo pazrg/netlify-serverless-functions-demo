@@ -118,7 +118,7 @@
       function getDogFromURL(dogsArray) {
           // Get the URL parameters
           const params = new URLSearchParams(window.location.search);
-          const dogName = params.get("name");
+          const dogName = params.get("nombre");
       
           if (!dogName) {
               console.warn("No 'name' parameter found in URL.");
