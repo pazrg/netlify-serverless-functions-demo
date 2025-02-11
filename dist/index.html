@@ -325,27 +325,30 @@
        }
       // Function to get data (from LocalStorage or API)
       async function getPeludosData() {
+        /*
         const cachedData = localStorage.getItem("peludosData");
         if (cachedData) {
           console.log("📌 Data retrieved from LocalStorage");
           return JSON.parse(cachedData); // Return stored data
         }
+        */
         console.log("🌍 Fetching new data from API...");
+        const source = "/.netlify/functions/peludos.js";
+        const url = new URL(window.location.href); // Dynamically get the current page URL
+        const dataURL=`${url.origin}${source}${url.search}`;
         try {
-          const API_URL = "https://buscador-lasanimal.netlify.app/.netlify/functions/peludos";
-          const response = await fetch(API_URL);
+          const response = await fetch(dataURL);
           if (!response.ok) throw new Error("Failed to fetch data");
           const data = await response.json();
-          localStorage.setItem("peludosData", JSON.stringify(data)); // Save to LocalStorage
-          console.log("✅ Data saved to LocalStorage");
+          //localStorage.setItem("peludosData", JSON.stringify(data)); // Save to LocalStorage
+          //console.log("✅ Data saved to LocalStorage");
           return data;
         } catch (error) {
           console.error("❌ Error fetching data:", error);
           return null;
         }
       }
-      
-      // Usage Example:
+      // LANDING
       getPeludosData().then((data) => {
         if (data) {
               try {
@@ -354,6 +357,20 @@
                 console.error('Error fetching dogs:', error);
             }
         }
+      });
+      //ADD EVENT LISTENERS
+      document.getElementById('btn-search').addEventListener('click', function () {
+        const url = new URL(window.location.href); // Dynamically get the current page URL
+        const dataURL=`${url.origin}${source}${url.search}`;
+        getPeludosData().then((data) => {
+        if (data) {
+                try {
+                  displayDogs(data);
+              } catch (error) {
+                  console.error('Error fetching dogs:', error);
+              }
+          }
+        });
       });
     </script>
   </body>
