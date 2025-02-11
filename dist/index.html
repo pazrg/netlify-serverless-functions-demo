@@ -283,7 +283,7 @@
       // Event listener for search btns
       document.getElementById('btn-reset').addEventListener('click', function () {
         const searchInput = document.getElementById('search-input');
-        searchInput.reset()
+        searchInput.value = ''; // Clears the input field
       });
       // Initialize filters and search input on page load
       initializeFiltersFromURL();
