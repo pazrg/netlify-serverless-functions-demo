@@ -280,6 +280,10 @@
           typingTimer = setTimeout(updateURL, typingDelay); // Call updateURL only after typing stops
       });
 
+      document.getElementsByClassName('btn-reset').addEventListener('click', function () {
+          document.getElementById('search-input').reset()
+      });
+
       // Initialize filters and search input on page load
       initializeFiltersFromURL();
     </script>
