@@ -360,8 +360,6 @@
       });
       //ADD EVENT LISTENERS
       document.getElementById('btn-search').addEventListener('click', function () {
-        const url = new URL(window.location.href); // Dynamically get the current page URL
-        const dataURL=`${url.origin}${source}${url.search}`;
         getPeludosData().then((data) => {
         if (data) {
                 try {
