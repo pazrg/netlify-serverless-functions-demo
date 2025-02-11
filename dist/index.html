@@ -237,7 +237,7 @@
         // Collect search input value
         const searchInput = document.getElementById('search-input');
         if (searchInput.value.trim() !== '') {
-          params.set('keyword', searchInput.value.trim()); // Add keyword if not empty
+          params.set('nombre', searchInput.value.trim()); // Add keyword if not empty
         }
 
         // Update the URL
@@ -257,8 +257,8 @@
 
         // Fill the search input if 'keyword' exists in URL
         const searchInput = document.getElementById('search-input');
-        if (params.has('keyword')) {
-          searchInput.value = params.get('keyword');
+        if (params.has('nombre')) {
+          searchInput.value = params.get('nombre');
         }
       }
 
