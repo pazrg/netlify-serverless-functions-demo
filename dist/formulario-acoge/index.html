@@ -418,7 +418,7 @@
                 <div class="mb-3">
                     <label class="form-label">¿Dónde dormirá el perro?</label>
                     <br><small>(en su cama dentro de casa, en el sofá, en el pasillo, en una caseta exterior...)</small>
-                    <textarea name="pregunta-dormitorio-perro" class="form-control" rows="3" required></textarea>
+                    <textarea name="indica-dormitorio-perro" class="form-control" rows="3" required></textarea>
                 </div>
               </div>
               <!-- Paso 6: convivientes -->
@@ -427,41 +427,41 @@
                 <div class="mb-3">
                     <label class="form-label">¿Cuántas personas mayores de edad conviven con usted y cómo los describiría?</label>
                     <br><small>(tranquilos, activos, responsables...)</small>
-                    <textarea name="pregunta-convivientes-mayor-edad" class="form-control" rows="3" required></textarea>
+                    <textarea name="indica-si-hay-convivientes-mayor-edad" class="form-control" rows="3" required></textarea>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">¿Cuántas personas menores de edad conviven con usted y cómo los describiría?</label>
                     <br><small>(tranquilos, activos, responsables...)</small>
-                    <textarea name="pregunta-convivientes-menor-edad" class="form-control" rows="3" required></textarea>
+                    <textarea name="indica-si-hay-convivientes-menor-edad" class="form-control" rows="3" required></textarea>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Si vive solo/a con menores/personas dependientes, ¿qué haría con el perro en caso de urgencia (hospitalización, viajes imprevistos, etc.)?</label>
-                    <textarea name="pregunta-personas-dependientes" class="form-control" rows="3"></textarea>
+                    <textarea name="indica-si-hay-convivientes-dependientes" class="form-control" rows="3"></textarea>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">¿Alguno de los convivientes tiene alergias a los perros?</label>
-                    <select name="pregunta-alergias-convivientes" class="form-control" required>
+                    <select name="indica-si-hay-convivintes-con-alergias" class="form-control" required>
                         <option value="S">Sí</option>
                         <option value="N">No</option>
                     </select>
                 </div>
                  <div class="mb-3">
                     <label class="form-label">Si convive con otras personas, ¿Comparten la decisión de acoger un perro?</label>
-                    <textarea name="pregunta-convivientes-ok-acogida" class="form-control" rows="3"></textarea>
+                    <textarea name="indica-si-convivientes-ok-con-acogida" class="form-control" rows="3"></textarea>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Si convive con otras personas, ¿Quién pasaría más tiempo con el animal?</label>
-                    <textarea name="pregunta-tiempo-convivientes-perro" class="form-control" rows="3"></textarea>
+                    <textarea name="indica-cual-de-los-convivientes-pasaria-mas-tiempo-con-perro" class="form-control" rows="3"></textarea>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">¿Tiene actualmente otros animales en casa?</label>
                     <br><small>Cuéntenos algo de ellos: cuantos son y de que especie, en caso de que sean perros  díganos  que raza son, de que edad, de que sexo, qué carácter tienen (dominantes, celosos,...) qué relación tiene con ellos (compañía, guarda,...)</small>
-                    <textarea name="pregunta-convivientes-animales" class="form-control" rows="3" required></textarea>
+                    <textarea name="indica-si-actualmente-tiene-mascotas-y-caracter" class="form-control" rows="3" required></textarea>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Si tiene otros animales en casa, ¿Tienen sus animales las vacunas actualizadas?</label>
                     <br><small>¿Alguna enfermedad o condición que comunicar? ¿están esterilizados?</small>
-                    <textarea name="pregunta-convivientes-animales-estado" class="form-control" rows="3"></textarea>
+                    <textarea name="indica-si-actualmente-tiene-mascotas-y-estado" class="form-control" rows="3"></textarea>
                 </div>
               </div>
               <!-- Paso 7: Datos personales -->
@@ -469,19 +469,19 @@
                 <div class="mb-3"><h3>Datos personales</h3></div>
                 <div class="mb-3">
                   <label for="nombre" class="form-label">Nombre y Apellidos</label>
-                  <input type="text" class="form-control" name="nombre" required>
+                  <input type="text" class="form-control" name="nombre-adoptante" required>
                 </div>
                 <div class="mb-3">
                   <label for="edad" class="form-label">DNI/NIF</label>
-                  <input type="text" class="form-control" name="dni" required>
+                  <input type="text" class="form-control" name="dni-adoptante" required>
                 </div>
                 <div class="mb-3">
                   <label for="edad" class="form-label">Edad</label>
-                  <input type="number" class="form-control" name="edad" required>
+                  <input type="number" class="form-control" name="edad-adoptante" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Estado Civil</label>
-                    <select name="pregunta-estado-civil" class="form-control" required>
+                    <select name="estado-civil-adoptante" class="form-control" required>
                         <option value="soltero">Soltero/a</option>
                         <option value="casado">Casado/a</option>
                         <option value="pareja-hecho">Pareja de hecho</option>
@@ -491,16 +491,16 @@
                 </div>
                 <div class="mb-3">
                   <label for="telefono" class="form-label">Teléfono</label>
-                  <input type="tel" class="form-control" name="telefono" required>
+                  <input type="tel" class="form-control" name="telefono-adoptante" required>
                 </div>
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control" name="email" required>
+                  <input type="email" class="form-control" name="email-adoptante" required>
                 </div>
                 <div class="mb-3">
                   <label for="direccion" class="form-label">Dirección completa</label>
                   <br><small>(Calle, Código postal, Localidad, Municipio, Provincia)</small>
-                  <input type="text" class="form-control" name="direccion" required>
+                  <input type="text" class="form-control" name="direccion-adoptante" required>
                 </div>
                 <div class="text-center mt-4">
                   <button type="submit" class="btn btn-submit">Enviar Solicitud</button>
