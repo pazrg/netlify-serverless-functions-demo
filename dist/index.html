@@ -291,8 +291,7 @@
       // Event listener for search input changes
       document.getElementById('copyUrlButton').addEventListener('click', function() {
           // Get the current page URL
-          const url = window.location.href;
-          url = decodeURIComponent(url);
+          const url = decodeURIComponent(window.location.href);
           // Copy the URL to the clipboard
           navigator.clipboard.writeText(url).then(function() {
               alert('URL copied to clipboard: ' + url);
