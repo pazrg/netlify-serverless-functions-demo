@@ -411,6 +411,24 @@
           }
         });
       });
+    fetch("https://sheetlabs.com/LASA/peludos" , {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          
+      },
+    })
+    .then(response => {
+      if (response.status === 200) {
+        return response.json();
+      } else {
+        throw new Error('Something went wrong');
+      }
+    })
+    .then(data => console.log(data))
+    .catch((error) => {
+        console.error(error);
+    });
     </script>
   </body>
 </html>
