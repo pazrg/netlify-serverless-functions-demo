@@ -282,6 +282,7 @@
       // Usage Example:
       getPeludosData().then((data) => {
         if (data) {
+            try{
                 fillDogDetails(data[0])
             } catch (error) {
                 console.error('Error fetching dogs:', error);
