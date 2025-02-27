@@ -24,6 +24,35 @@
         padding: 10px;
         border-radius: 10px;
       }
+
+      .spn-light {
+        background-color: rgba(0,0,0,.03);
+        color: black;
+        border-color: rgba(0,0,0,.03);
+        font-size: 75%;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: .25rem;
+      }
+      
+      .spn-warn {
+        background-color: #17a2b8;
+        color: black;
+        border-color: #17a2b8;
+        margin: 0.25em;
+        padding: .25em .4em;
+        font-size: 75%;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: .25rem;
+      }
+      
       .btn-apadrina {
         background: black;
         color: white;
@@ -305,7 +334,7 @@
           return name.replace(/\b\w/g, (char) => char.toUpperCase());
       }
       function createBadges(items) {
-          return items.map(item => `<span class="badge badge-info">${item}</span>`).join(' ');
+          return items.map(item => `<span class="spn-light">${item}</span>`).join(' ');
       }
 
       // Function to display cards
@@ -325,7 +354,7 @@
                       <div class="card-body">
                           <h5 class="card-title">${capitalizeName(dog.nombre)} <i class="fa-solid fa-paw"></i></h5>
                           <span><i class="fa-solid fa-shield-dog"></i> ${ badges }</span>
-                          ${dog.ppp === 'Si' ? '<span class="badge badge-warning"><i class="fa-solid fa-square-check"></i> PPP </span>' : '' }
+                          ${dog.ppp === 'Si' ? '<span class="spn-warn"><i class="fa-solid fa-square-check"></i> PPP </span>' : '' }
                           <p class="card-text">${dog.historiabreve || 'Se desconoce historia'}</p>
                       </div>
                       <div class="card-footer">
