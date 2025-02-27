@@ -201,15 +201,16 @@
         let attrs = ''
         if(dog.sexo){
           document.querySelector(".title-attributes").textContent = 'Atributos';
-          attrs = attrs + '<span><i class="fa-solid fa${dog.sexo === 'Hembra' ? '-venus' : '-mars'}"></i> ${dog.sexo}</span>'
+          icon = dog.sexo === 'Hembra' ? 'fa-solid fa-venus' : 'fa-solid fa-mars'
+          attrs = attrs + '<span><i class="'+icon+'"></i>dog.sexo</span>'
         }
         if(dog.talla){
           document.querySelector(".title-attributes").textContent = 'Atributos';
-          attrs = attrs + '<span><i class="fa-solid fa-dog"></i> ${dog.talla}</span>'
+          attrs = attrs + '<span><i class="fa-solid fa-dog"></i>'+dog.talla+'</span>'
         }
         if(dog.tramoedad){
           document.querySelector(".title-attributes").textContent = 'Atributos';
-          attrs = attrs + '<span><i class="fa-solid fa-birthday-cake"></i>${dog.tramoedad}</span>'
+          attrs = attrs + '<span><i class="fa-solid fa-birthday-cake"></i>'+dog.tramoedad+'</span>'
         }
         if(dog.sociabilidadgatos){
           if(dog.sociabilidadgatos === 'Si'){
