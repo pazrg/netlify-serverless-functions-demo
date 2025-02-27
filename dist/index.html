@@ -341,7 +341,7 @@
       }
       function decodeHtmlEntities(encodedStr) {
           const parser = new DOMParser();
-          let encodedStr = encodedStr.replace('<img', '<img class="card-img-top"')
+          encodedStr = encodedStr.replace('<img', '<img class="card-img-top"')
           const doc = parser.parseFromString(encodedStr, "text/html");
           return doc.body.innerHTML;
       }
