@@ -413,24 +413,32 @@
       });
     </script>
     <script>
-    // Extract query parameters
-    const { nombre } = event.queryStringParameters;
-    const parseQueryParam = param => (Array.isArray(param) ? param.map(p => p.toLowerCase()) : [param.toLowerCase()]);
-
-    const sexo = event.multiValueQueryStringParameters?.sexo; // Gets all values as an array
-    const sexArray = sexo ? parseQueryParam(sexo) : null;
-
-    const tamaño = event.multiValueQueryStringParameters?.tamaño; // Gets all values as an array
-    const sizeArray = tamaño ? parseQueryParam(tamaño) : null;
-
-    const edad = event.multiValueQueryStringParameters?.edad; // Gets all values as an array
-    const ageArray = edad ? parseQueryParam(edad) : null;
-
-    const vulnerabilidad = event.multiValueQueryStringParameters?.vulnerabilidad; // Gets all values as an array
-    const vulnerabilidadArray = vulnerabilidad ? parseQueryParam(vulnerabilidad) : null;
-
-    const compatibilidad = event.multiValueQueryStringParameters?.compatibilidad; // Gets all values as an array
-    const compatibilidadArray = compatibilidad ? parseQueryParam(compatibilidad) : null;
+      // Function to parse query parameters and handle multiple values
+      const parseQueryParam = param => {
+          if (!param) return null;
+          return Array.isArray(param) ? param.map(p => p.toLowerCase()) : [param.toLowerCase()];
+      };
+      
+      // Get query parameters from the current URL
+      const urlParams = new URLSearchParams(window.location.search);
+      
+      // Extract parameters (handling multiple values where applicable)
+      const nombre = urlParams.get('nombre');
+      
+      const sexo = urlParams.getAll('sexo'); // Gets all values as an array
+      const sexArray = sexo.length ? parseQueryParam(sexo) : null;
+      
+      const tamaño = urlParams.getAll('tamaño');
+      const sizeArray = tamaño.length ? parseQueryParam(tamaño) : null;
+      
+      const edad = urlParams.getAll('edad');
+      const ageArray = edad.length ? parseQueryParam(edad) : null;
+      
+      const vulnerabilidad = urlParams.getAll('vulnerabilidad');
+      const vulnerabilidadArray = vulnerabilidad.length ? parseQueryParam(vulnerabilidad) : null;
+      
+      const compatibilidad = urlParams.getAll('compatibilidad');
+      const compatibilidadArray = compatibilidad.length ? parseQueryParam(compatibilidad) : null;
     
     // Fetch the db.json data
     const dataURL="https://sheetlabs.com/LASA/peludos/?publicar=Si"
