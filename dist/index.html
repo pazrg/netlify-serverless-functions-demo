@@ -450,7 +450,7 @@
         try {
           const response = await fetch(dataURL);
           if (!response.ok) throw new Error("Failed to fetch data");
-          const data = await response.json();
+          let data = await response.json();
           // Filter by Sex if provided
           if (sexArray) {
             data = data.filter(item => item.sexo && sexArray.includes(item.sexo.toLowerCase()));
