@@ -275,7 +275,7 @@
         if(data.length>0){
           document.querySelector(".title-comments").textContent = 'Comentarios de voluntarios';
           const commentsContainer = document.querySelector(".list-group");
-          commentsContainer.innerHTML = dog_comments
+          commentsContainer.innerHTML = data
             .map(comment => `<li class="list-group-item">"${comment.comentario}" - ${comment.autor}</li>`)
             .join("");
         }
