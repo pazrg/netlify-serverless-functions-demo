@@ -352,11 +352,26 @@
           container.innerHTML = ''; // Clear previous content                
           dogs.forEach(dog => {
              // Decode `dog.fotografia` before inserting it
-            let imgContent = dog.fotografia 
+              let imgContent = dog.fotografia 
                 ? decodeHtmlEntities(dog.fotografia)  
                 : `<a data-flickr-embed="true" href="https://www.flickr.com/photos/202291935@N05/54351007578/in/datetaken/lightbox/" title="default">
                       <img class="card-img-top" src="https://live.staticflickr.com/65535/54351007578_9e25b9ab8d_w.jpg" width="400" height="400" alt="default"/>
                    </a>`;
+            
+              let bottom_btns = ''
+              if(dog.sociabilidadpersonas==="Si"){
+                if(dog.fase.includes('Residencia'){
+                  bottom_btns = '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a>
+                }
+                if(dog.fase === 'Acogida'){
+                  bottom_btns = '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="/formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>'
+                }
+                if(dog.fase === 'Calle'){
+                  bottom_btns = '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="/formulario-acoge" class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</a><a role="button" href="/formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>'
+                }
+              }else{
+                bottom_btns = '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a>
+              }
             
               let badges = createBadges(dog.raza.split(','));
               const card = document.createElement('div');
@@ -374,9 +389,7 @@
                           <p class="card-text">${dog.historiabreve || 'Se desconoce historia'}</p>
                       </div>
                       <div class="card-footer">
-                          ${ dog.fase.includes('Residencia') ? '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="/formulario-acoge" class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</a><a role="button" href="/formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>' : ''}
-                          ${ dog.fase === 'Acogida' ? '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="/formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>' : ''}
-                          ${ dog.fase === 'Calle' ? '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="/formulario-acoge" class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</a><a role="button" href="/formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>' : ''}
+                          ${ bottom_btns }
                       </div>
                   </div>
               `;
