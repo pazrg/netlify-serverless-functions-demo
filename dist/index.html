@@ -484,7 +484,7 @@
     })
     .then(response => {
       if (response.status === 200) {
-        let result = await response.json();
+        let result = response.json();
         // Filter by Sex if provided
         if (sexArray) {
           result = result.filter(item => item.sexo && sexArray.includes(item.sexo.toLowerCase()));
