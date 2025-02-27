@@ -490,6 +490,7 @@
       },
     })
     .then(response => {
+      console.log(response)
       if (response.status === 200) {
         let result = response.json();
         // Filter by Sex if provided
@@ -504,23 +505,15 @@
         if (ageArray) {
           result = result.filter(item => item.edad_tramo && ageArray.includes(item.edad_tramo.toLowerCase()));
         }
-    
-        return {
-          statusCode: 200,
-          body: JSON.stringify(result),
-          headers: { "Content-Type": "application/json" },
-        };
+        console.log(result)
+        console.log(JSON.stringify(result))
+        return JSON.stringify(result),
       } else {
         throw new Error('Something went wrong');
       }
     })
-    .then(data => console.log(data))
     .catch((error) => {
-        console.error("Error fetching or filtering db.json:", error);
-        return {
-          statusCode: 500,
-          body: JSON.stringify({ error: "Failed to process GET request", details: error.message }),
-        };
+        console.error("Error fetching or filtering peludos", error);
     });
     </script>
   </body>
