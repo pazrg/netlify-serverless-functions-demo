@@ -427,7 +427,7 @@
         const compatibilidadArray = compatibilidad.length ? parseQueryParam(compatibilidad) : null;
       
         // Fetch the data
-        let dataURL="https://sheetlabs.com/LASA/peludos/?publicar=Si"
+        let dataURL="https://sheetlabs.com/LASA/peludos/?publicar=Si&_orderby=vulnerabilidad&_order=desc"
         // Filter by Name if provided (case-insensitive)
         if (nombre) {
           dataURL = dataURL+'&nombre='+nombre
