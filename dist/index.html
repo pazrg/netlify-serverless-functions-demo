@@ -313,7 +313,7 @@
           const container = document.querySelector('.row.row-cols-1');
           container.innerHTML = ''; // Clear previous content                
           dogs.forEach(dog => {
-              let badges = createBadges(dog.raza.split(',');
+              let badges = createBadges(dog.raza.split(','));
               const card = document.createElement('div');
               card.classList.add('col');
               card.innerHTML = `
