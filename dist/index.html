@@ -341,6 +341,7 @@
       }
       function decodeHtmlEntities(encodedStr) {
           const parser = new DOMParser();
+          let encodedStr = encodedStr.replace('<img', '<img class="card-img-top"')
           const doc = parser.parseFromString(encodedStr, "text/html");
           return doc.body.innerHTML;
       }
@@ -353,7 +354,7 @@
             let imgContent = dog.fotografia 
                 ? decodeHtmlEntities(dog.fotografia)  
                 : `<a data-flickr-embed="true" href="https://www.flickr.com/photos/202291935@N05/54351007578/in/datetaken/lightbox/" title="default">
-                      <img src="https://live.staticflickr.com/65535/54351007578_9e25b9ab8d_w.jpg" width="400" height="400" alt="default"/>
+                      <img class="card-img-top" src="https://live.staticflickr.com/65535/54351007578_9e25b9ab8d_w.jpg" width="400" height="400" alt="default"/>
                    </a>`;
             
               let badges = createBadges(dog.raza.split(','));
