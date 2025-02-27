@@ -16,6 +16,34 @@
         flex-grow: 1;
         position: relative;
       }
+      
+      .spn-light {
+        background-color: mediumturquoise;
+        color: black;
+        border-color: mediumturquoise;
+        padding: .25em .4em;
+        font-size: 75%;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: .25rem;
+      }
+      
+      .spn-warn {
+        background-color: #ffc107;
+        color: black;
+        border-color: #ffc107;
+        padding: .25em .4em;
+        font-size: 75%;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: .25rem;
+      }
       .dog-image {
         width: 100%;
         height: 400px;
@@ -77,23 +105,33 @@
       <h1></h1>
     </header>
     <main class="container py-4">
-      <div class="text-center position-relative">
-        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783" class="dog-image" alt="">
+      <div class="image-container text-center position-relative">
         <div class="button-container"></div>
       </div>
       <div class="mt-4">
         <h2></h2>
         <p></p>
       </div>
-      <div class="attributes mt-3"></div>
+
       <div class="mt-4">
-        <h4>Comentarios de voluntarios</h4>
+        <h4 class="title-attributes"></h4>
+        <div class="attributes"></div>
+      </div>
+          
+      <div class="mt-4">
+        <h4 class="title-educacion"></h4>
+        <div class="educacion"></div>
+      </div>
+      
+      <div class="mt-4">
+        <h4 class="title-comments"></h4>
         <ul class="list-group">
-          <li class="list-group-item">Es es un perrito súper cariñoso, siempre busca mimos y es muy juguetón." - Laura</li>
+          <!--<li class="list-group-item">Es es un perrito súper cariñoso, siempre busca mimos y es muy juguetón." - Laura</li>
           <li class="list-group-item">"Lo he sacado a pasear varias veces y es muy obediente y sociable con otros perros." - Pedro</li>
-          <li class="list-group-item">"Tiene mucha energía, pero también le encanta acurrucarse a tu lado después de jugar." - Ana</li>
+          <li class="list-group-item">"Tiene mucha energía, pero también le encanta acurrucarse a tu lado después de jugar." - Ana</li>-->
         </ul>
       </div>
+
       <div class="mt-4">
         <h4>Síguelo en redes</h4>
         <div class="social-icons">
@@ -106,106 +144,144 @@
     <footer class="bg-dark text-white text-center py-3">
       <p>Peludos Lasanimal - Todos los derechos reservados &copy; 2025</p>
     </footer>
-        <script type="text/javascript">
+    <script type="text/javascript">
       function capitalizeName(name) {
           return name.replace(/\b\w/g, (char) => char.toUpperCase());
       }
-      function getDogFromURL(dogsArray) {
-          // Get the URL parameters
-          const params = new URLSearchParams(window.location.search);
-          const dogName = params.get("nombre");
-      
-          if (!dogName) {
-              console.warn("No 'name' parameter found in URL.");
-              return null;
-          }
-      
-          // Normalize input for case-insensitive matching
-          const normalizedDogName = dogName.toLowerCase();
-          // Find the dog with a matching name (case insensitive)
-          const matchingDog = dogsArray.find(dog => dog.nombre.toLowerCase() === normalizedDogName);
-      
-          return matchingDog || null; // Return the matching dog or null if not found
-      }
-          
+      function createBadges(items) {
+          return items.map(item => `<span class="spn-light">${item}</span>`).join(' ');
+      }       
       // Function to get data (from LocalStorage or API)
       async function getPeludosData() {
-        /*
-        const cachedData = localStorage.getItem("peludosData");
-        if (cachedData) {
-          console.log("📌 Data retrieved from LocalStorage");
-          return JSON.parse(cachedData); // Return stored data
+        // Get query parameters from the current URL
+        const urlParams = new URLSearchParams(window.location.search);
+        // Extract parameters (handling multiple values where applicable)
+        const nombre = urlParams.get('nombre');
+        // Fetch the data
+        let dataURL="https://sheetlabs.com/LASA/peludos/?publicar=Si"
+        // Filter by Name if provided (case-insensitive)
+        if (nombre) {
+          dataURL = dataURL+'&nombre='+nombre
         }
-        */
         console.log("🌍 Fetching new data from API...");
-        const source = "/.netlify/functions/peludos";
-        const url = new URL(window.location.href); // Dynamically get the current page URL
-        const dataURL=`${url.origin}${source}${url.search}`;
         try {
           const response = await fetch(dataURL);
           if (!response.ok) throw new Error("Failed to fetch data");
-          const data = await response.json();
-          //localStorage.setItem("peludosData", JSON.stringify(data)); // Save to LocalStorage
-          //console.log("✅ Data saved to LocalStorage");
+          let data = await response.json();
           return data;
         } catch (error) {
           console.error("❌ Error fetching data:", error);
           return null;
         }
       }
-          
       function fillDogDetails(dog){
         document.querySelector("header h1").textContent = `Conoce a ${capitalizeName(dog.nombre)}`;
-        //document.querySelector(".dog-image").src = dog.image;
-        // document.querySelector(".dog-image").alt = `${capitalizeName(dog.nombre)}, el perrito en adopción`;
         document.querySelector("h2").textContent = `Sobre ${capitalizeName(dog.nombre)}`;
-        document.querySelector("main p").textContent = dog.descripcion;
+        document.querySelector("main p").textContent = dog.historiabreve;
         
         // Atualizar botones
         const btnContainer = document.querySelector(".button-container");
-        btnContainer.innerHTML = `
-          <!--<button class="btn btn-sm btn-difusion"><i class="fa-solid fa-link"></i> Comparte</button>-->
-          ${dog.situacion_residencia ? '<a role="button" href="../formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="../formulario-acoge" class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</a><a role="button" href="../formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>' : ''}
-          ${dog.situacion_acogida ? '<a role="button" href="../formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="../formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>' : ''}
-          ${dog.situacion_calle ? '<a role="button" href="../formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="../formulario-acoge" class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</a><a role="button" href="../formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>' : ''}
-        `;
+        let bottom_btns = ''
+        if(dog.sociabilidadpersonas==="Si"){
+          if(dog.fase === 'Residencia'){
+            bottom_btns = '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="/formulario-acoge" class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</a><a role="button" href="/formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>'
+          }
+          if(dog.fase === 'Acogida'){
+            bottom_btns = '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="/formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>'
+          }
+          if(dog.fase === 'Calle'){
+            bottom_btns = '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="/formulario-acoge" class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</a><a role="button" href="/formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>'
+          }
+        }else{
+          bottom_btns = '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a>'
+        }
+        btnContainer.innerHTML = bottom_btns;
                   
         // Actualizar atributos
+        let attrs = ''
+        if(dog.sexo){
+          document.querySelector(".title-attributes").textContent = 'Atributos';
+          attrs = attrs + '<span><i class="fa-solid fa${dog.sexo === 'Hembra' ? '-venus' : '-mars'}"></i> ${dog.sexo}</span>'
+        }
+        if(dog.talla){
+          document.querySelector(".title-attributes").textContent = 'Atributos';
+          attrs = attrs + '<span><i class="fa-solid fa-dog"></i> ${dog.talla}</span>'
+        }
+        if(dog.tramoedad){
+          document.querySelector(".title-attributes").textContent = 'Atributos';
+          attrs = attrs + '<span><i class="fa-solid fa-birthday-cake"></i>${dog.tramoedad}</span>'
+        }
+        if(dog.sociabilidadgatos){
+          if(dog.sociabilidadgatos === 'Si'){
+            document.querySelector(".title-attributes").textContent = 'Atributos';
+            attrs = attrs + '<span><i class="fa-solid fa-cat"></i> Sociable con gatos</span>'
+          }
+        }
+        if(dog.sociabilidadperros){
+          if(dog.sociabilidadperros === 'Si'){
+            document.querySelector(".title-attributes").textContent = 'Atributos';
+            attrs = attrs + '<span><i class="fa-solid fa-dog"></i><i class="fa-solid fa-mars"></i> Sociable con perros</span>'
+          }
+        }
+        if(dog.sociabilidadperras){
+          if(dog.sociabilidadperras === 'Si'){
+            document.querySelector(".title-attributes").textContent = 'Atributos';
+            attrs = attrs + '<span><i class="fa-solid fa-dog"></i><i class="fa-solid fa-venus"></i> Sociable con perras</span>'
+          }
+        }           
         const attributesContainer = document.querySelector(".attributes");
-        attributesContainer.innerHTML = `
-            <span><i class="fa-solid fa${dog.sexo === 'Hembra' ? '-venus' : '-mars'}"></i> ${dog.sexo}</span>
-            <span><i class="fa-solid fa-birthday-cake"></i> ${dog.edad_tramo}</span>
-            <span><i class="fa-solid fa-dog"></i> ${dog.tamaño}</span>
-            ${dog.compatibilidad_gatos === true ? '<span><i class="fa-solid fa-cat"></i> Bien con gatos</span>' : '' }
-            ${dog.compatibilidad_perros_macho === true ? '<span><i class="fa-solid fa-dog"></i><i class="fa-solid fa-mars"></i> Bien con perros</span>' : '' }
-            ${dog.compatibilidad_perros_hembra === true ? '<span><i class="fa-solid fa-dog"></i><i class="fa-solid fa-venus"></i> Bien con perras</span>' : '' }
+        attributesContainer.innerHTML = attrs;
 
-            <!--<span><i class="fa-solid fa-heart"></i> ${dog.temperamento}</span>-->
-        `;
-        /*
+        // Actualizar educacion
+        let badges = ''
+        if(dog.educacion){
+          document.querySelector(".title-educacion").textContent = 'Educación';
+          const attributesContainer = document.querySelector(".educacion");
+          badges = createBadges(dog.educacion)
+          attributesContainer.innerHTML = badges;
+        }
+        
         // Actualizar comentarios
-        const commentsContainer = document.querySelector(".list-group");
-        commentsContainer.innerHTML = dog.comments
-            .map(comment => `<li class="list-group-item">"${comment.text}" - ${comment.author}</li>`)
+        fetch("https://sheetlabs.com/LASA/comentarios7'nombre="+dog.nombre , {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+        },
+      })
+      .then(response => {
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          throw new Error('Something went wrong');
+        }
+      })
+      .then(data => {
+        if(data.length>0){
+          document.querySelector(".title-comments").textContent = 'Comentarios de voluntarios';
+          const commentsContainer = document.querySelector(".list-group");
+          commentsContainer.innerHTML = dog_comments
+            .map(comment => `<li class="list-group-item">"${comment.comentario}" - ${comment.autor}</li>`)
             .join("");
-
+        }
+                    
+      })
+      .catch((error) => {
+          console.error(error);
+      });
         // Actualizar redes sociales
+        /*
         const socialIcons = document.querySelectorAll(".social-icons a");
         socialIcons[0].href = dog.socialLinks.facebook;
         socialIcons[1].href = dog.socialLinks.instagram;
         socialIcons[2].href = dog.socialLinks.twitter;
         */
+  
     }
           
       // Usage Example:
       getPeludosData().then((data) => {
         if (data) {
-              try {
-                if(data === undefined || data.length == 0){
-                  window.location.href = "https://buscador-lasanimal.netlify.app"; // Redirección si no hay nombre en la URL
-                }else{
-                  fillDogDetails(data[0])
-                }
+                fillDogDetails(data[0])
             } catch (error) {
                 console.error('Error fetching dogs:', error);
             }
