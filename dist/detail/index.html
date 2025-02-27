@@ -254,7 +254,7 @@
         if(dog.educacion){
           document.querySelector(".title-educacion").textContent = 'Educación';
           const attributesContainer = document.querySelector(".educacion");
-          badges = createBadges(dog.educacion)
+          badges = createBadges(dog.educacion.split(','))
           attributesContainer.innerHTML = badges;
         }
         
