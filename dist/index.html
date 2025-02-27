@@ -209,8 +209,6 @@
           </div>
           <div class="filter-group">
             <h6>Vulnerabilidad:</h6>
-            <!--<span class="filter-chip" data-filter="vulnerabilidad" data-value="senior"><i class="fa-solid fa-person-cane"></i> Viejito</span>-->
-            <!--<span class="filter-chip" data-filter="vulnerabilidad" data-value="discapacitado"><i class="fa-solid fa-wheelchair"></i> Discapacitado</span>-->
             <span class="filter-chip" data-filter="vulnerabilidad" data-value="enfermo"><i class="fa-solid fa-house-medical"></i> Enfermo</span>
             <span class="filter-chip" data-filter="vulnerabilidad" data-value="veterano"><i class="fa-solid fa-star"></i> Veterano</span>
             <span class="filter-chip" data-filter="vulnerabilidad" data-value="PPP"><i class="fa-solid fa-square-check"></i> PPP</span>
@@ -299,32 +297,6 @@
               console.error('Failed to copy URL: ', error);
           });
       });
-      
-      /*
-      let typingTimer; // Timer variable
-      const typingDelay = 600; // Time in ms to wait after typing stops
-      document.getElementById('search-input').addEventListener('input', function () {
-        //clearTimeout(typingTimer); // Reset the timer on every keystroke
-        //typingTimer = setTimeout(updateURL, typingDelay); // Call updateURL only after typing stops
-      });
-      */
-      // Event listener for search btns
-      /*
-      document.getElementById('btn-reset').addEventListener('click', function () {
-        const searchInput = document.getElementById('search-input');
-        searchInput.value = ''; // Clears the input field
-        searchInput.dispatchEvent(new Event('input', { bubbles: true })); // Trigger input event
-        getPeludosData().then((data) => {
-        if (data) {
-                try {
-                  displayDogs(data);
-              } catch (error) {
-                  console.error('Error fetching dogs:', error);
-              }
-          }
-        });
-      });
-      */
       // Initialize filters and search input on page load
       initializeFiltersFromURL();
     </script>
@@ -345,18 +317,16 @@
                       <div class="image-container">
                         <img src="/pictures/${dog.nombre}.jpg" onerror="this.onerror=null; this.src='/pictures/default.jpg';" class="card-img-top" alt="Perro en adopción">
                       </div>
-                      <!--<img src="https://diamondpet.storage.googleapis.com/wp-content/uploads/2021/07/09073656/young-puppy-on-leash-sitting-in-grass-012924.jpg" class="card-img-top" alt="Perro en adopción">-->
                       <div class="card-body">
                           <h5 class="card-title">${capitalizeName(dog.nombre)} <i class="fa-solid fa-paw"></i></h5>
-                          <span><i class="fa-solid fa-shield-dog"></i> ${dog.raza || 'mestizo'}</span>
-                          ${dog.ppp === true ? '<span><i class="fa-solid fa-square-check"></i> PPP </span>' : '' }
-                          <p class="card-text">${dog.descripcion || 'Sin descripción disponible'}</p>
+                          <span><i class="fa-solid fa-shield-dog"></i> ${dog.raza }</span>
+                          ${dog.ppp === 'Si' ? '<span><i class="fa-solid fa-square-check"></i> PPP </span>' : '' }
+                          <p class="card-text">${dog.historiabreve || 'Se desconoce historia'}</p>
                       </div>
                       <div class="card-footer">
-                          <!--<a role="button" href="detail/?nombre=${capitalizeName(dog.nombre)}" class="btn btn-sm btn-difusion"><i class="fa-solid fa-link"></i> Comparte</a>-->
-                          ${dog.situacion_residencia ? '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="/formulario-acoge" class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</a><a role="button" href="/formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>' : ''}
-                          ${dog.situacion_acogida ? '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="/formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>' : ''}
-                          ${dog.situacion_calle ? '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="/formulario-acoge" class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</a><a role="button" href="/formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>' : ''}
+                          ${ dog.fase.includes('Residencia') ? '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="/formulario-acoge" class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</a><a role="button" href="/formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>' : ''}
+                          ${ dog.fase === 'Acogida' ? '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="/formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>' : ''}
+                          ${ dog.fase === 'Calle' ? '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="/formulario-acoge" class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</a><a role="button" href="/formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>' : ''}
                       </div>
                   </div>
               `;
@@ -364,25 +334,76 @@
           });
           document.querySelector('.results-count p strong').textContent = dogs.length;
        }
+      
+      // Function to parse query parameters and handle multiple values
+      const parseQueryParam = param => {
+          if (!param) return null;
+          return Array.isArray(param) ? param.map(p => p.toLowerCase()) : [param.toLowerCase()];
+      };
+      
       // Function to get data (from LocalStorage or API)
       async function getPeludosData() {
-        /*
-        const cachedData = localStorage.getItem("peludosData");
-        if (cachedData) {
-          console.log("📌 Data retrieved from LocalStorage");
-          return JSON.parse(cachedData); // Return stored data
+        // Get query parameters from the current URL
+        const urlParams = new URLSearchParams(window.location.search);
+      
+        // Extract parameters (handling multiple values where applicable)
+        const nombre = urlParams.get('nombre');
+        
+        const sexo = urlParams.getAll('sexo'); // Gets all values as an array
+        const sexArray = sexo.length ? parseQueryParam(sexo) : null;
+        
+        const tamaño = urlParams.getAll('tamaño');
+        const sizeArray = tamaño.length ? parseQueryParam(tamaño) : null;
+        
+        const edad = urlParams.getAll('edad');
+        const ageArray = edad.length ? parseQueryParam(edad) : null;
+        
+        const vulnerabilidad = urlParams.getAll('vulnerabilidad');
+        const vulnerabilidadArray = vulnerabilidad.length ? parseQueryParam(vulnerabilidad) : null;
+        
+        const compatibilidad = urlParams.getAll('compatibilidad');
+        const compatibilidadArray = compatibilidad.length ? parseQueryParam(compatibilidad) : null;
+      
+        // Fetch the data
+        const dataURL="https://sheetlabs.com/LASA/peludos/?publicar=Si"
+        // Filter by Name if provided (case-insensitive)
+        if (nombre) {
+          dataURL = dataURL+'&nombre='+nombre
         }
-        */
+        // Filter by Compatibility if provided (case-insensitive)    
+        if (compatibilidadArray) {
+          const okCats = compatibilidadArray.includes("gatos")
+          if (okCats){
+            dataURL = dataURL+'&sociabilidadgatos=Si'
+          }
+          const okMales = compatibilidadArray.includes("perros")
+          if (okMales){
+            dataURL = dataURL+'&sociabilidadperros=Si'
+          }
+          const okFemales = compatibilidadArray.includes("perras")
+          if (okFemales){
+            dataURL = dataURL+'&sociabilidadperras=Si'
+          }  
+        }    
+        if (vulnerabilidadArray) {
+          const isPPP = vulnerabilidadArray.includes("ppp")
+          if (isPPP){
+            dataURL = dataURL+'&ppp=Si'
+          }
+          const isVet = vulnerabilidadArray.includes("veterano")
+          if (isVet){
+            dataURL = dataURL+'&veterano=Si'
+          }
+          const isSick = vulnerabilidadArray.includes("enfermo")
+          if (isSick){
+            dataURL = dataURL+'&condicion=Enfermo'
+          }  
+        }
         console.log("🌍 Fetching new data from API...");
-        const source = "/.netlify/functions/peludos";
-        const url = new URL(window.location.href); // Dynamically get the current page URL
-        const dataURL=`${url.origin}${source}${url.search}`;
         try {
           const response = await fetch(dataURL);
           if (!response.ok) throw new Error("Failed to fetch data");
           const data = await response.json();
-          //localStorage.setItem("peludosData", JSON.stringify(data)); // Save to LocalStorage
-          //console.log("✅ Data saved to LocalStorage");
           return data;
         } catch (error) {
           console.error("❌ Error fetching data:", error);
@@ -410,111 +431,6 @@
               }
           }
         });
-      });
-    </script>
-    <script>
-      // Function to parse query parameters and handle multiple values
-      const parseQueryParam = param => {
-          if (!param) return null;
-          return Array.isArray(param) ? param.map(p => p.toLowerCase()) : [param.toLowerCase()];
-      };
-      
-      // Get query parameters from the current URL
-      const urlParams = new URLSearchParams(window.location.search);
-      
-      // Extract parameters (handling multiple values where applicable)
-      const nombre = urlParams.get('nombre');
-      
-      const sexo = urlParams.getAll('sexo'); // Gets all values as an array
-      const sexArray = sexo.length ? parseQueryParam(sexo) : null;
-      
-      const tamaño = urlParams.getAll('tamaño');
-      const sizeArray = tamaño.length ? parseQueryParam(tamaño) : null;
-      
-      const edad = urlParams.getAll('edad');
-      const ageArray = edad.length ? parseQueryParam(edad) : null;
-      
-      const vulnerabilidad = urlParams.getAll('vulnerabilidad');
-      const vulnerabilidadArray = vulnerabilidad.length ? parseQueryParam(vulnerabilidad) : null;
-      
-      const compatibilidad = urlParams.getAll('compatibilidad');
-      const compatibilidadArray = compatibilidad.length ? parseQueryParam(compatibilidad) : null;
-    
-      // Fetch the db.json data
-      const dataURL="https://sheetlabs.com/LASA/peludos/?publicar=Si"
-      // Filter by Name if provided (case-insensitive)
-      if (nombre) {
-        dataURL = dataURL+'&nombre='+nombre
-        //result = result.filter(item => item.nombre.toLowerCase().includes(nombre.toLowerCase()));
-      }
-      // Filter by Compatibility if provided (case-insensitive)    
-      if (compatibilidadArray) {
-        const okCats = compatibilidadArray.includes("gatos")
-        if (okCats){
-          dataURL = dataURL+'&sociabilidadgatos=Si'
-          //result = result.filter(item => item.compatibilidad_gatos && item.compatibilidad_gatos === true);
-        }
-        const okMales = compatibilidadArray.includes("perros")
-        if (okMales){
-          dataURL = dataURL+'&sociabilidadperros=Si'
-          //result = result.filter(item => item.compatibilidad_perros_macho && item.compatibilidad_perros_macho === true);
-        }
-        const okFemales = compatibilidadArray.includes("perras")
-        if (okFemales){
-          dataURL = dataURL+'&sociabilidadperras=Si'
-          //result = result.filter(item => item.compatibilidad_perros_hembra && item.compatibilidad_perros_hembra === true);
-        }  
-      }    
-      if (vulnerabilidadArray) {
-        const isPPP = vulnerabilidadArray.includes("ppp")
-        if (isPPP){
-          dataURL = dataURL+'&ppp=Si'
-          //result = result.filter(item => item.ppp && item.ppp === true);
-        }
-        const isVet = vulnerabilidadArray.includes("veterano")
-        if (isVet){
-          dataURL = dataURL+'&veterano=Si'
-          //result = result.filter(item => item.antiguedad_numero && item.antiguedad_numero > 3);
-        }
-        const isSick = vulnerabilidadArray.includes("enfermo")
-        if (isSick){
-          dataURL = dataURL+'&condicion=Enfermo'
-          //result = result.filter( item => item.estado_salud != null );
-        }  
-      }
-          
-     fetch(dataURL , {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            
-        },
-      })
-      .then(response => {
-        if (response.status === 200) {
-          let result = response.json();
-          // Filter by Sex if provided
-          if (sexArray) {
-            result = result.filter(item => item.sexo && sexArray.includes(item.sexo.toLowerCase()));
-          }
-          // Filter by Size if provided
-          if (sizeArray) {
-            result = result.filter(item => item.tamaño && sizeArray.includes(item.tamaño.toLowerCase()));
-          }
-          // Filter by Size if provided
-          if (ageArray) {
-            result = result.filter(item => item.edad_tramo && ageArray.includes(item.edad_tramo.toLowerCase()));
-          }
-          console.log(result)
-          console.log(JSON.stringify(result))
-          return result;
-        } else {
-          throw new Error('Something went wrong');
-        }
-      })
-      .then(data => console.log(data))
-      .catch((error) => {
-          console.error(error);
       });
     </script>
   </body>
