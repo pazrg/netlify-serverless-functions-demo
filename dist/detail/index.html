@@ -150,7 +150,13 @@
       }
       function createBadges(items) {
           return items.map(item => `<span class="spn-light">${item}</span>`).join(' ');
-      }       
+      }
+      function decodeHtmlEntities(encodedStr) {
+          const parser = new DOMParser();
+          encodedStr = encodedStr.replace('<img', '<img class="card-img-top"')
+          const doc = parser.parseFromString(encodedStr, "text/html");
+          return doc.body.innerHTML;
+      }
       // Function to get data (from LocalStorage or API)
       async function getPeludosData() {
         // Get query parameters from the current URL
@@ -179,6 +185,15 @@
         document.querySelector("h2").textContent = `Sobre ${capitalizeName(dog.nombre)}`;
         document.querySelector("main p").textContent = dog.historiabreve;
         
+        // Actualizar foto
+        let imgContent = dog.fotografia 
+          ? decodeHtmlEntities(dog.fotografia)  
+          : `<a data-flickr-embed="true" href="https://www.flickr.com/photos/202291935@N05/54351007578/in/datetaken/lightbox/" title="default">
+                <img class="card-img-top" src="https://live.staticflickr.com/65535/54351007578_9e25b9ab8d_w.jpg" width="400" height="400" alt="default"/>
+             </a>`;
+        const imgContainer = document.querySelector(".image-container");
+        imgContainer.innerHTML = imgContent;
+
         // Atualizar botones
         const btnContainer = document.querySelector(".button-container");
         let bottom_btns = ''
