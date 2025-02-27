@@ -91,7 +91,6 @@
     </header>
     <main class="container py-4">
       <div class="text-center position-relative">
-        <div class="button-container"></div>
         <div class="image-container"></div>
       </div>
       <div class="mt-4">
@@ -118,6 +117,11 @@
         </ul>
       </div>
 
+      <div class="mt-4">
+        <h4 class="title-ayuda"></h4>
+        <div class="btn-container"></div>
+      </div>
+      
       <div class="mt-4">
         <h4>Síguelo en redes</h4>
         <div class="social-icons">
@@ -182,7 +186,7 @@
 
         // Atualizar botones
         const btnContainer = document.querySelector(".button-container");
-        let bottom_btns = ''
+        let bottom_btns = null
         if(dog.sociabilidadpersonas==="Si"){
           if(dog.fase === 'Residencia'){
             bottom_btns = '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a><a role="button" href="/formulario-acoge" class="btn btn-sm btn-acogida"><i class="fa-solid fa-house"></i> Acoge</a><a role="button" href="/formulario-adopta" class="btn btn-sm btn-adopcion"><i class="fa-solid fa-house-flag"></i> Adopta</a>'
@@ -196,7 +200,10 @@
         }else{
           bottom_btns = '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a>'
         }
-        btnContainer.innerHTML = bottom_btns;
+        if(bottom_btns){
+            document.querySelector(".title-ayuda").textContent = 'Ayúdanos a ayudar';
+            btnContainer.innerHTML = bottom_btns;
+        } 
                   
         // Actualizar atributos
         let attrs = ''
