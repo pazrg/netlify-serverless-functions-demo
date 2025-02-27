@@ -373,7 +373,10 @@
                 bottom_btns = '<a role="button" href="/formulario-apadrina" class="btn btn-sm btn-apadrina"><i class="fa-solid fa-heart"></i> Apadrina</a>'
               }
             
-              let badges = createBadges(dog.raza.split(','));
+              let badges = ''
+              if(dog.raza){
+                badges = createBadges(dog.raza.split(','));
+              }
               const card = document.createElement('div');
               card.classList.add('col');
               card.innerHTML = `
