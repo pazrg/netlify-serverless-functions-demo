@@ -440,58 +440,56 @@
       const compatibilidad = urlParams.getAll('compatibilidad');
       const compatibilidadArray = compatibilidad.length ? parseQueryParam(compatibilidad) : null;
     
-    // Fetch the db.json data
-    const dataURL="https://sheetlabs.com/LASA/peludos/?publicar=Si"
-    // Filter by Name if provided (case-insensitive)
-    if (nombre) {
-      dataURL = dataURL+'&nombre='+nombre
-      //result = result.filter(item => item.nombre.toLowerCase().includes(nombre.toLowerCase()));
-    }
-    // Filter by Compatibility if provided (case-insensitive)    
-    if (compatibilidadArray) {
-      const okCats = compatibilidadArray.includes("gatos")
-      if (okCats){
-        dataURL = dataURL+'&sociabilidadgatos=Si'
-        //result = result.filter(item => item.compatibilidad_gatos && item.compatibilidad_gatos === true);
+      // Fetch the db.json data
+      const dataURL="https://sheetlabs.com/LASA/peludos/?publicar=Si"
+      // Filter by Name if provided (case-insensitive)
+      if (nombre) {
+        dataURL = dataURL+'&nombre='+nombre
+        //result = result.filter(item => item.nombre.toLowerCase().includes(nombre.toLowerCase()));
       }
-      const okMales = compatibilidadArray.includes("perros")
-      if (okMales){
-        dataURL = dataURL+'&sociabilidadperros=Si'
-        //result = result.filter(item => item.compatibilidad_perros_macho && item.compatibilidad_perros_macho === true);
+      // Filter by Compatibility if provided (case-insensitive)    
+      if (compatibilidadArray) {
+        const okCats = compatibilidadArray.includes("gatos")
+        if (okCats){
+          dataURL = dataURL+'&sociabilidadgatos=Si'
+          //result = result.filter(item => item.compatibilidad_gatos && item.compatibilidad_gatos === true);
+        }
+        const okMales = compatibilidadArray.includes("perros")
+        if (okMales){
+          dataURL = dataURL+'&sociabilidadperros=Si'
+          //result = result.filter(item => item.compatibilidad_perros_macho && item.compatibilidad_perros_macho === true);
+        }
+        const okFemales = compatibilidadArray.includes("perras")
+        if (okFemales){
+          dataURL = dataURL+'&sociabilidadperras=Si'
+          //result = result.filter(item => item.compatibilidad_perros_hembra && item.compatibilidad_perros_hembra === true);
+        }  
+      }    
+      if (vulnerabilidadArray) {
+        const isPPP = vulnerabilidadArray.includes("ppp")
+        if (isPPP){
+          dataURL = dataURL+'&ppp=Si'
+          //result = result.filter(item => item.ppp && item.ppp === true);
+        }
+        const isVet = vulnerabilidadArray.includes("veterano")
+        if (isVet){
+          dataURL = dataURL+'&veterano=Si'
+          //result = result.filter(item => item.antiguedad_numero && item.antiguedad_numero > 3);
+        }
+        const isSick = vulnerabilidadArray.includes("enfermo")
+        if (isSick){
+          dataURL = dataURL+'&condicion=Enfermo'
+          //result = result.filter( item => item.estado_salud != null );
+        }  
       }
-      const okFemales = compatibilidadArray.includes("perras")
-      if (okFemales){
-        dataURL = dataURL+'&sociabilidadperras=Si'
-        //result = result.filter(item => item.compatibilidad_perros_hembra && item.compatibilidad_perros_hembra === true);
-      }  
-    }    
-    if (vulnerabilidadArray) {
-      const isPPP = vulnerabilidadArray.includes("ppp")
-      if (isPPP){
-        dataURL = dataURL+'&ppp=Si'
-        //result = result.filter(item => item.ppp && item.ppp === true);
-      }
-      const isVet = vulnerabilidadArray.includes("veterano")
-      if (isVet){
-        dataURL = dataURL+'&veterano=Si'
-        //result = result.filter(item => item.antiguedad_numero && item.antiguedad_numero > 3);
-      }
-      const isSick = vulnerabilidadArray.includes("enfermo")
-      if (isSick){
-        dataURL = dataURL+'&condicion=Enfermo'
-        //result = result.filter( item => item.estado_salud != null );
-      }  
-    }
-    fetch(dataURL , {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          
-      },
-    })
-    .then(response => {
-      console.log(response)
-      if (response.status === 200) {
+      fetch(dataURL , {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            
+        },
+      })
+      .then(response => {
         let result = response.json();
         // Filter by Sex if provided
         if (sexArray) {
@@ -508,9 +506,6 @@
         console.log(result)
         console.log(JSON.stringify(result))
         return JSON.stringify(result),
-      } else {
-        throw new Error('Something went wrong');
-      }
     })
     .catch((error) => {
         console.error("Error fetching or filtering peludos", error);
