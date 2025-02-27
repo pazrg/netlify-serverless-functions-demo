@@ -16,34 +16,17 @@
         flex-grow: 1;
         position: relative;
       }
-      
-      .spn-light {
-        background-color: mediumturquoise;
-        color: black;
-        border-color: mediumturquoise;
-        padding: .25em .4em;
-        font-size: 75%;
-        font-weight: 700;
-        line-height: 1;
-        text-align: center;
-        white-space: nowrap;
-        vertical-align: baseline;
-        border-radius: .25rem;
+
+      .educacion span {
+        display: inline-block;
+        background: lightgrey;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 20px;
+        margin-right: 5px;
+        font-size: 0.9rem;
       }
       
-      .spn-warn {
-        background-color: #ffc107;
-        color: black;
-        border-color: #ffc107;
-        padding: .25em .4em;
-        font-size: 75%;
-        font-weight: 700;
-        line-height: 1;
-        text-align: center;
-        white-space: nowrap;
-        vertical-align: baseline;
-        border-radius: .25rem;
-      }
       .dog-image {
         width: 100%;
         height: 400px;
@@ -150,7 +133,7 @@
           return name.replace(/\b\w/g, (char) => char.toUpperCase());
       }
       function createBadges(items) {
-          return items.map(item => `<span class="spn-light">${item}</span>`).join(' ');
+          return items.map(item => `<span>${item}</span>`).join(' ');
       }
       function decodeHtmlEntities(encodedStr) {
           const parser = new DOMParser();
