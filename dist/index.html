@@ -336,12 +336,23 @@
       function createBadges(items) {
           return items.map(item => `<span class="spn-light">${item}</span>`).join(' ');
       }
-
+      function decodeHtmlEntities(encodedStr) {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(encodedStr, "text/html");
+          return doc.body.innerHTML;
+      }
       // Function to display cards
       async function displayDogs(dogs) {
           const container = document.querySelector('.row.row-cols-1');
           container.innerHTML = ''; // Clear previous content                
           dogs.forEach(dog => {
+             // Decode `dog.fotografia` before inserting it
+            let imgContent = dog.fotografia 
+                ? decodeHtmlEntities(dog.fotografia)  
+                : `<a data-flickr-embed="true" href="https://www.flickr.com/photos/202291935@N05/54351007578/in/datetaken/lightbox/" title="default">
+                      <img src="https://live.staticflickr.com/65535/54351007578_9e25b9ab8d_w.jpg" width="400" height="400" alt="default"/>
+                   </a>`;
+            
               let badges = createBadges(dog.raza.split(','));
               const card = document.createElement('div');
               card.classList.add('col');
@@ -349,7 +360,7 @@
                   <div class="card">
                       <a role="button" class="btn btn-sm more-info-btn" href="detail/?nombre=${capitalizeName(dog.nombre)}">Más info</a>
                       <div class="image-container">
-                        <img src="/pictures/${dog.nombre}.jpg" onerror="this.onerror=null; this.src='/pictures/default.jpg';" class="card-img-top" alt="Perro en adopción">
+                        <div class="image-container">${ imgContent }</div>
                       </div>
                       <div class="card-body">
                           <h5 class="card-title">${capitalizeName(dog.nombre)} <i class="fa-solid fa-paw"></i></h5>
@@ -367,8 +378,7 @@
               container.appendChild(card);
           });
           document.querySelector('.results-count p strong').textContent = dogs.length;
-       }
-      
+       }      
       // Function to parse query parameters and handle multiple values
       const parseQueryParam = param => {
           if (!param) return null;
