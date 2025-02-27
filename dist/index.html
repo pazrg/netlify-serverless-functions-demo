@@ -482,7 +482,8 @@
           //result = result.filter( item => item.estado_salud != null );
         }  
       }
-      fetch(dataURL , {
+          
+     fetch(dataURL , {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -490,26 +491,31 @@
         },
       })
       .then(response => {
-        let result = response.json();
-        // Filter by Sex if provided
-        if (sexArray) {
-          result = result.filter(item => item.sexo && sexArray.includes(item.sexo.toLowerCase()));
+        if (response.status === 200) {
+          let result = response.json();
+          // Filter by Sex if provided
+          if (sexArray) {
+            result = result.filter(item => item.sexo && sexArray.includes(item.sexo.toLowerCase()));
+          }
+          // Filter by Size if provided
+          if (sizeArray) {
+            result = result.filter(item => item.tamaño && sizeArray.includes(item.tamaño.toLowerCase()));
+          }
+          // Filter by Size if provided
+          if (ageArray) {
+            result = result.filter(item => item.edad_tramo && ageArray.includes(item.edad_tramo.toLowerCase()));
+          }
+          console.log(result)
+          console.log(JSON.stringify(result))
+          return result;
+        } else {
+          throw new Error('Something went wrong');
         }
-        // Filter by Size if provided
-        if (sizeArray) {
-          result = result.filter(item => item.tamaño && sizeArray.includes(item.tamaño.toLowerCase()));
-        }
-        // Filter by Size if provided
-        if (ageArray) {
-          result = result.filter(item => item.edad_tramo && ageArray.includes(item.edad_tramo.toLowerCase()));
-        }
-        console.log(result)
-        console.log(JSON.stringify(result))
-        return JSON.stringify(result)
-    })
-    .catch((error) => {
-        console.error("Error fetching or filtering peludos", error);
-    });
+      })
+      .then(data => console.log(data))
+      .catch((error) => {
+          console.error(error);
+      });
     </script>
   </body>
 </html>
