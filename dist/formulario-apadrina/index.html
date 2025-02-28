@@ -453,7 +453,7 @@ document.addEventListener("DOMContentLoaded", function () {
         apiKey: "SjoBMD1Rp5JUhy187uWJLtSExwTQc_j6gM_1fqHIJcsRCe9mmCZJQXVfjDGwMQ",
         spreadsheetId: "1ACG7ZEdHpWWTDD5P9UuEFbT8H-DrmU9OzYCpFTYH_0g"
       };
-      const url = new URL("https://api.sheetson.com/v2/sheets/peludos");
+      const url = new URL("https://api.sheetson.com/v2/sheets/peludos/?limit=100");
       Object.keys(params).forEach(key => url.searchParams.append(key, encodeURIComponent(params[key])));
       
       fetch(url)
