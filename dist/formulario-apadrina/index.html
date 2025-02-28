@@ -448,23 +448,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
     </script>
-    <script>
-      const params = {
-        apiKey: "SjoBMD1Rp5JUhy187uWJLtSExwTQc_j6gM_1fqHIJcsRCe9mmCZJQXVfjDGwMQ",
-        spreadsheetId: "1ACG7ZEdHpWWTDD5P9UuEFbT8H-DrmU9OzYCpFTYH_0g"
-      };
-      const url = new URL("https://api.sheetson.com/v2/sheets/peludos/?limit=100&order=-_vulnerabilidad&skip=1");
-      Object.keys(params).forEach(key => url.searchParams.append(key, encodeURIComponent(params[key])));
-      
-      fetch(url)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then(result => console.log(result))
-        .catch(error => console.error("Error fetching data:", error));
-    </script>
   </body>
 </html>
